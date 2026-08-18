@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Check, ChevronDown, MapPin, Store, X } from 'lucide-react';
 import { branches } from '../../data/store';
 import { selectBranch, useSelectedBranch } from '../../lib/branchStore';
@@ -38,7 +39,7 @@ export default function BranchSelector() {
         <ChevronDown className="h-3.5 w-3.5 text-muted" strokeWidth={2} />
       </button>
 
-      {open && (
+      {open && typeof document !== 'undefined' && createPortal(
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 p-0 backdrop-blur-sm sm:items-center sm:p-5">
           <div
             ref={dialogRef}
@@ -87,7 +88,8 @@ export default function BranchSelector() {
               })}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

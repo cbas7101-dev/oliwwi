@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Check, MapPin, X } from 'lucide-react';
 import { branches, productCategories, type Product, type ProductCategory } from '../../data/store';
 import { selectBranch, useSelectedBranch } from '../../lib/branchStore';
@@ -66,7 +67,7 @@ export default function ProductGrid({ products, filterable = false }: Props) {
         {visibleProducts.map((product) => <ProductCard key={product.id} product={product} onOrder={order} />)}
       </div>
 
-      {pendingProduct && (
+      {pendingProduct && typeof document !== 'undefined' && createPortal(
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/45 backdrop-blur-sm sm:items-center sm:p-5">
           <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="order-branch-title" tabIndex={-1} className="max-h-[90dvh] w-full overflow-y-auto rounded-t-[2rem] bg-cream p-5 shadow-2xl sm:max-w-xl sm:rounded-[2rem] sm:p-7">
             <div className="mb-5 flex items-start justify-between gap-4">
@@ -101,7 +102,8 @@ export default function ProductGrid({ products, filterable = false }: Props) {
             </div>
             <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-muted"><WhatsAppIcon className="h-4 w-4" /> Tu pedido se termina directamente con la tienda.</p>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

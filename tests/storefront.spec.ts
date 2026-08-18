@@ -24,14 +24,23 @@ test('selects a branch and builds the correct WhatsApp order URL', async ({ page
   expect(decodeURIComponent(openedUrl)).toContain('Tinta labial larga duración USHAS');
 });
 
-test('asks for a branch when none has been selected', async ({ page }) => {
+test('asks for a branch when none has been selected and Latacunga is available', async ({ page }) => {
   await page.goto('/catalogo');
   await page.evaluate(() => window.localStorage.clear());
   await page.reload();
   await waitForIslands(page);
+  await page.evaluate(() => {
+    (window as Window & { __openedUrl?: string }).__openedUrl = undefined;
+    window.open = ((url?: string | URL) => {
+      (window as Window & { __openedUrl?: string }).__openedUrl = String(url);
+      return null;
+    }) as typeof window.open;
+  });
   await page.getByRole('button', { name: 'Pedir por WhatsApp' }).first().click();
   await expect(page.getByRole('heading', { name: 'Elige dónde pedir' })).toBeVisible();
-  await expect(page.getByRole('dialog').getByRole('button', { name: /Latacunga/ })).toBeDisabled();
+  await page.getByRole('dialog').getByRole('button', { name: /Latacunga/ }).click();
+  const openedUrl = await page.evaluate(() => (window as Window & { __openedUrl?: string }).__openedUrl ?? '');
+  expect(openedUrl).toContain('wa.me/593984403580');
 });
 
 test('filters the catalog and does not overflow on mobile', async ({ page }) => {

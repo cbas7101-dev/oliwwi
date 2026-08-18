@@ -148,8 +148,8 @@ export const branches: Branch[] = [
     id: 'latacunga',
     name: 'Latacunga',
     address: '[pendiente]',
-    phoneDisplay: null,
-    phoneInternational: null,
+    phoneDisplay: '098 440 3580',
+    phoneInternational: '593984403580',
     schedule: '[pendiente]'
   }
 ];
