@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductGrid from '../components/react/ProductGrid';
+import { products } from '../data/store';
+---
+
+<Layout
+	title="Catálogo | Oliwwi"
+	description="Explora el catálogo inicial de maquillaje, skincare coreano, cuidado capilar y corporal de Oliwwi."
+>
+	<section class="overflow-hidden bg-brand-pale py-14 sm:py-20">
+		<div class="page-shell relative">
+			<svg class="pointer-events-none absolute -right-10 top-0 h-32 w-32 text-brand/15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z" /></svg>
+			<div class="relative max-w-3xl" data-reveal>
+				<span class="eyebrow">Catálogo inicial</span>
+				<h1 class="font-display text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl">Tus próximos favoritos están aquí.</h1>
+				<p class="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">Filtra por categoría, elige tu sucursal y termina tu pedido directamente por WhatsApp.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-space bg-cream">
+		<div class="page-shell" data-reveal>
+			<ProductGrid products={products} filterable client:load />
+		</div>
+	</section>
+</Layout>

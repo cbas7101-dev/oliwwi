@@ -1,0 +1,72 @@
+@import '@fontsource-variable/fredoka';
+@import '@fontsource-variable/nunito-sans';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    font-synthesis: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: #fff8f5;
+  }
+
+  body {
+    @apply m-0 min-w-0 bg-cream font-body text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand text-white;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-cream;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10;
+  }
+
+  .section-space {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-display text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-brand-dark active:translate-y-0 active:scale-[0.98];
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 font-display text-sm font-semibold text-ink transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:text-brand-dark active:translate-y-0 active:scale-[0.98];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

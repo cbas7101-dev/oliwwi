@@ -1,23 +1,35 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/react/ScrollReveal';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Oliwwi | Maquillaje y skincare en Ecuador',
+	description = 'Maquillaje, skincare coreano y cuidado personal 100% original. Elige tu sucursal Oliwwi y pide por WhatsApp.'
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#e92672" />
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<Header currentPath={Astro.url.pathname} />
+		<main><slot /></main>
+		<Footer />
+		<ScrollReveal client:load />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

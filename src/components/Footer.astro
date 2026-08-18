@@ -1,0 +1,31 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer class="border-t border-white/10 bg-ink text-white">
+  <div class="page-shell grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr] md:py-16">
+    <div>
+      <Logo size="footer" />
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Maquillaje, skincare coreano y cuidado personal 100% original, cerca de ti.</p>
+      <p class="mt-4 font-display text-lg font-medium text-brand-soft">Be you, Be beautiful.</p>
+    </div>
+    <div>
+      <h2 class="font-display text-sm font-semibold uppercase tracking-[0.16em] text-brand-soft">Explora</h2>
+      <nav class="mt-4 grid gap-2 text-sm text-white/70" aria-label="Enlaces del pie">
+        <a href="/" class="transition hover:text-white">Inicio</a>
+        <a href="/catalogo" class="transition hover:text-white">Catálogo</a>
+        <a href="/#sucursales" class="transition hover:text-white">Sucursales</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="font-display text-sm font-semibold uppercase tracking-[0.16em] text-brand-soft">Comunidad</h2>
+      <div class="mt-4 grid gap-2 text-sm text-white/70">
+        <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noreferrer" class="transition hover:text-white">Instagram @oliwwi_ec</a>
+        <a href="https://t.me/oliwwi_makeup" target="_blank" rel="noreferrer" class="transition hover:text-white">Telegram @oliwwi_makeup</a>
+        <span>TikTok</span>
+        <span>Facebook</span>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-xs text-white/45">Oliwwi · Ecuador</div>
+</footer>

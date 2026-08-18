@@ -1,11 +1,34 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CategorySection from '../components/CategorySection.astro';
+import BranchesSection from '../components/BranchesSection.astro';
+import SocialSection from '../components/SocialSection.astro';
+import ProductGrid from '../components/react/ProductGrid';
+import { products } from '../data/store';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredProducts = [products[0], products[2], products[6], products[7]];
 ---
 
 <Layout>
-	<Welcome />
+	<Hero />
+	<CategorySection />
+
+	<section class="section-space bg-white">
+		<div class="page-shell">
+			<div class="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between" data-reveal>
+				<div>
+					<span class="eyebrow">Favoritos Oliwwi</span>
+					<h2 class="font-display text-4xl font-semibold leading-none tracking-tight text-ink sm:text-5xl">Para probar, amar y repetir.</h2>
+				</div>
+				<a href="/catalogo" class="button-secondary self-start sm:self-auto">Ver todos los productos</a>
+			</div>
+			<div data-reveal>
+				<ProductGrid products={featuredProducts} client:load />
+			</div>
+		</div>
+	</section>
+
+	<BranchesSection />
+	<SocialSection />
 </Layout>
