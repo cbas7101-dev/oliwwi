@@ -31,5 +31,30 @@ const {
 		<main><slot /></main>
 		<Footer />
 		<ScrollReveal client:load />
+		<script>
+			const allowedCampaignParams = new Set(['gclid', 'fbclid']);
+			const campaignParams = new URLSearchParams(window.location.search);
+
+			document.querySelectorAll<HTMLAnchorElement>('a[data-cross-site]').forEach((link) => {
+				const target = new URL(link.href, window.location.origin);
+				campaignParams.forEach((value, key) => {
+					if (key.startsWith('utm_') || allowedCampaignParams.has(key)) {
+						target.searchParams.set(key, value);
+					}
+				});
+				link.href = target.toString();
+			});
+
+			document.querySelectorAll<HTMLFormElement>('form[action^="https://tienda.oliwwi.com"]').forEach((form) => {
+				campaignParams.forEach((value, key) => {
+					if (!key.startsWith('utm_') && !allowedCampaignParams.has(key)) return;
+					const input = document.createElement('input');
+					input.type = 'hidden';
+					input.name = key;
+					input.value = value;
+					form.appendChild(input);
+				});
+			});
+		</script>
 	</body>
 </html>

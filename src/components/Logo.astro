@@ -3,18 +3,21 @@ import { Image } from 'astro:assets';
 
 interface Props {
   size?: 'header' | 'footer';
+  href?: string;
 }
 
-const { size = 'header' } = Astro.props;
-const dimensions = size === 'header' ? 58 : 78;
+const { size = 'header', href = '/' } = Astro.props;
+const dimensions = size === 'header'
+  ? { width: 180, height: 48 }
+  : { width: 220, height: 56 };
 ---
 
-<a href="/" class="inline-flex shrink-0 items-center rounded-2xl focus-visible:ring-offset-white" aria-label="Oliwwi, ir al inicio">
+<a href={href} data-cross-site class="inline-flex shrink-0 items-center focus-visible:ring-offset-white" aria-label="Oliwwi, ir al inicio">
   <Image
-    src="/logo.jpeg"
+    src="/oliwwi-logo-transparente.png"
     alt="Oliwwi Makeup"
-    width={dimensions}
-    height={dimensions}
-    class:list={['object-cover', size === 'header' ? 'h-[58px] w-[58px] rounded-2xl' : 'h-[78px] w-[78px] rounded-[1.4rem]']}
+    width={dimensions.width}
+    height={dimensions.height}
+    class:list={['object-contain', size === 'header' ? 'h-12 w-[180px]' : 'h-14 w-[220px]']}
   />
 </a>

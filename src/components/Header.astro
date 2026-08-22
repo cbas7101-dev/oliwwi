@@ -11,28 +11,24 @@ const { currentPath } = Astro.props;
 ---
 
 <!-- Announcement Bar -->
-<div class="bg-brand text-white py-2 text-center font-display text-xs sm:text-sm">
-  <marquee behavior="scroll" direction="left" scrollamount="30" class="whitespace-nowrap">
-    <span class="me-8">🚚 Envío gratis en compras desde $60</span>
-    <span class="me-8">💬 Pide por WhatsApp directo a tu sucursal</span>
-    <span class="me-8">🏪 Retiro en tienda gratis en 6 ciudades</span>
-    <span class="me-8">💳 Pago seguro online o contraentrega</span>
-    <span>🚚 Envío gratis en compras desde $60</span>
-    <span class="me-8">💬 Pide por WhatsApp directo a tu sucursal</span>
-    <span class="me-8">🏪 Retiro en tienda gratis en 6 ciudades</span>
-    <span class="me-8">💳 Pago seguro online o contraentrega</span>
-  </marquee>
+<div class="overflow-hidden bg-brand px-6 py-2 text-center font-display text-xs text-white sm:text-sm" aria-label="Información de compra">
+  <div class="flex justify-start gap-8 whitespace-nowrap sm:justify-center">
+    <span>Envío gratis en compras desde $60</span>
+    <span class="hidden md:inline">Pide por WhatsApp directo a tu sucursal</span>
+    <span class="hidden md:inline">Retiro en tienda gratis en 6 ciudades</span>
+    <span class="hidden md:inline">Pago seguro online o contraentrega</span>
+  </div>
 </div>
 
 <!-- Main Header -->
 <header class="sticky top-0 z-40 border-b border-ink/[0.06] bg-cream/95 backdrop-blur-xl">
   <div class="page-shell flex items-center justify-between gap-3 min-h-[80px]">
     <!-- Logo -->
-    <Logo class="h-10 sm:h-12" />
+    <Logo href={siteConfig.url} />
 
     <!-- Search (desktop) -->
     <div class="hidden lg:flex-1 max-w-md mx-8">
-      <form action={siteConfig.storeUrl + '/'} method="get" target="_blank" class="relative">
+      <form action={siteConfig.storeUrl + '/'} method="get" class="relative">
         <label for="header-search" class="sr-only">Buscar en la tienda</label>
         <input
           id="header-search"
@@ -53,11 +49,10 @@ const { currentPath } = Astro.props;
       {navLinks.map((link) => (
         <a
           href={link.href}
-          target={link.external ? '_blank' : undefined}
-          rel={link.external ? 'noopener noreferrer' : undefined}
+          data-cross-site={link.href.startsWith(siteConfig.storeUrl) || link.crossSite ? true : undefined}
           class:list={[
             'rounded-full px-4 py-2 font-display text-sm font-medium transition hover:bg-white hover:text-brand-dark',
-            currentPath === link.href || (link.href === '/tienda' && currentPath.startsWith('/tienda')) ? 'text-brand-dark bg-white shadow-soft' : 'text-ink'
+            link.label === 'Inicio' && currentPath === '/' ? 'text-brand-dark bg-white shadow-soft' : 'text-ink'
           ]}
         >
           {link.label}
@@ -73,7 +68,7 @@ const { currentPath } = Astro.props;
         <div class="absolute left-0 top-full mt-2 w-[520px] bg-white rounded-2xl border border-ink/10 shadow-card p-4 opacity-0 invisible group-open:opacity-100 group-open:visible transition-all duration-200 z-50">
           <div class="grid grid-cols-2 gap-4">
             {brands.map((brand) => (
-              <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-pale transition">
+              <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} data-cross-site class="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-pale transition">
                 <img src={brand.logo} alt={brand.name} class="h-8 w-auto object-contain" />
                 <span class="font-display text-sm font-medium text-ink">{brand.name}</span>
               </a>
@@ -89,9 +84,8 @@ const { currentPath } = Astro.props;
 
       <!-- Cart icon linking to WP store cart -->
       <a
-        href={siteConfig.storeUrl + '/carrito'}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={siteConfig.storeUrl + '/cart/'}
+        data-cross-site
         class="hidden lg:flex items-center justify-center w-11 h-11 rounded-full border border-ink/10 bg-white text-ink hover:bg-brand-pale hover:text-brand-dark hover:border-brand/30 transition"
         aria-label="Carrito de compras"
       >
@@ -112,15 +106,14 @@ const { currentPath } = Astro.props;
           {navLinks.map((link) => (
             <a
               href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
+              data-cross-site={link.href.startsWith(siteConfig.storeUrl) || link.crossSite ? true : undefined}
               class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-brand-pale hover:text-brand-dark"
             >
               {link.label}
             </a>
           ))}
           <div class="pt-2 border-t border-ink/10">
-            <a href={`${siteConfig.storeUrl}/shop/`} target="_blank" rel="noopener noreferrer" class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-brand-dark">Todas las marcas</a>
+            <a href={`${siteConfig.storeUrl}/shop/`} data-cross-site class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-brand-dark">Todas las marcas</a>
           </div>
         </nav>
       </details>

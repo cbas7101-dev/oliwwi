@@ -4,7 +4,7 @@ import { siteConfig, socialLinks } from '../data/config';
 ---
 
 <footer class="border-t border-ink/10 bg-ink text-white" data-reveal>
-  <div class="page-shell grid gap-10 py-12 lg:grid-cols-[1.5fr_repeat(4,1fr)] lg:py-16">
+  <div class="page-shell grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_repeat(4,1fr)] lg:py-16">
     <!-- Brand -->
     <div class="lg:col-span-1">
       <Logo size="footer" />
@@ -18,13 +18,11 @@ import { siteConfig, socialLinks } from '../data/config';
     <nav aria-label="Navegación principal">
       <h2 class="font-display text-sm font-semibold uppercase tracking-[0.16em] text-brand-soft">Explora</h2>
       <ul class="mt-4 grid gap-2 text-sm text-white/70">
-        <li><a href="/" class="transition hover:text-white">Inicio</a></li>
-        <li><a href="/marcas" class="transition hover:text-white">Marcas</a></li>
-        <li><a href="/catalogo" class="transition hover:text-white">Catálogo</a></li>
-        <li><a href="/ofertas" class="transition hover:text-white">Ofertas</a></li>
-        <li><a href="/sucursales" class="transition hover:text-white">Sucursales</a></li>
-        <li><a href="/nosotros" class="transition hover:text-white">Nosotros</a></li>
-        <li><a href={siteConfig.storeUrl} target="_blank" rel="noopener noreferrer" class="transition hover:text-white">Tienda Online</a></li>
+        <li><a href={siteConfig.url} data-cross-site class="transition hover:text-white">Inicio</a></li>
+        <li><a href={`${siteConfig.storeUrl}/shop/`} data-cross-site class="transition hover:text-white">Tienda</a></li>
+        <li><a href={`${siteConfig.storeUrl}/ofertas/`} data-cross-site class="transition hover:text-white">Ofertas</a></li>
+        <li><a href={`${siteConfig.storeUrl}/nuestras-tiendas/`} data-cross-site class="transition hover:text-white">Sucursales</a></li>
+        <li><a href={`${siteConfig.storeUrl}/nosotros/`} data-cross-site class="transition hover:text-white">Nosotros</a></li>
       </ul>
     </nav>
 
@@ -32,11 +30,11 @@ import { siteConfig, socialLinks } from '../data/config';
     <nav aria-label="Ayuda y soporte">
       <h2 class="font-display text-sm font-semibold uppercase tracking-[0.16em] text-brand-soft">Ayuda</h2>
       <ul class="mt-4 grid gap-2 text-sm text-white/70">
-        <li><a href="/faq" class="transition hover:text-white">Preguntas Frecuentes</a></li>
-        <li><a href="/envios" class="transition hover:text-white">Envíos y Retiros</a></li>
-        <li><a href="/pagos" class="transition hover:text-white">Métodos de Pago</a></li>
-        <li><a href="/mayoreo" class="transition hover:text-white">Precios de Mayoreo</a></li>
-        <li><a href="/contacto" class="transition hover:text-white">Contáctanos</a></li>
+        <li><a href={`${siteConfig.storeUrl}/faq/`} data-cross-site class="transition hover:text-white">Preguntas Frecuentes</a></li>
+        <li><a href={`${siteConfig.storeUrl}/envios/`} data-cross-site class="transition hover:text-white">Envíos y Retiros</a></li>
+        <li><a href={`${siteConfig.storeUrl}/pagos/`} data-cross-site class="transition hover:text-white">Métodos de Pago</a></li>
+        <li><a href={`${siteConfig.storeUrl}/mayoreo/`} data-cross-site class="transition hover:text-white">Precios de Mayoreo</a></li>
+        <li><a href={`${siteConfig.storeUrl}/contacto/`} data-cross-site class="transition hover:text-white">Contáctanos</a></li>
       </ul>
     </nav>
 
@@ -44,9 +42,9 @@ import { siteConfig, socialLinks } from '../data/config';
     <nav aria-label="Información legal">
       <h2 class="font-display text-sm font-semibold uppercase tracking-[0.16em] text-brand-soft">Legal</h2>
       <ul class="mt-4 grid gap-2 text-sm text-white/70">
-        <li><a href="/politicas/privacidad" class="transition hover:text-white">Política de Privacidad</a></li>
-        <li><a href="/politicas/terminos" class="transition hover:text-white">Términos y Condiciones</a></li>
-        <li><a href="/politicas/devoluciones" class="transition hover:text-white">Devoluciones</a></li>
+        <li><a href={`${siteConfig.storeUrl}/politicas/privacidad/`} data-cross-site class="transition hover:text-white">Política de Privacidad</a></li>
+        <li><a href={`${siteConfig.storeUrl}/politicas/terminos/`} data-cross-site class="transition hover:text-white">Términos y Condiciones</a></li>
+        <li><a href={`${siteConfig.storeUrl}/politicas/devoluciones/`} data-cross-site class="transition hover:text-white">Devoluciones</a></li>
       </ul>
     </nav>
 
@@ -58,7 +56,11 @@ import { siteConfig, socialLinks } from '../data/config';
           <a href={social.href} target="_blank" rel="noopener noreferrer" class="transition hover:text-white flex items-center gap-2">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               {social.icon === 'instagram' && (
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zM12 6.865a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 1 0 6.666 3.333 3.333 0 0 1 0-6.666zm0 1.332c-1.417 0-2.568.956-2.962 2.192h.002c.394 1.236 1.552 2.192 2.96 2.192s2.568-.956 2.96-2.192h-.002c-.395-1.236-1.553-2.192-2.959-2.192z" />
+                <g fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+                </g>
               )}
               {social.icon === 'tiktok' && (
                 <path d="M16.1 19.2V8.8c0-.7-.7-1.3-1.5-1.3h-3.2c-.8 0-1.5.6-1.5 1.3v10.4c0 .7.7 1.3 1.5 1.3h3.2c.8 0 1.5-.6 1.5-1.3zm-9.2-12.2c0-1.6 1.3-2.9 2.9-2.9s2.9 1.3 2.9 2.9-1.3 2.9-2.9 2.9-2.9-1.3-2.9-2.9zm13.4 13.8c-.9 2.8-3 5-5.7 5.5v-2.5c1.8-.3 3.2-1.9 3.2-3.9 0-1.6-1.3-2.9-2.9-2.9s-2.9 1.3-2.9 2.9c0 .9.5 1.7 1.3 2.1-.7.2-1.4.4-2.1.5v2.6c3.6-.7 6.4-3.2 6.4-6.4z" />
@@ -78,9 +80,9 @@ import { siteConfig, socialLinks } from '../data/config';
     <div class="page-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/45">
       <p>© {new Date().getFullYear()} Oliwwi · Ecuador</p>
       <div class="flex items-center gap-4">
-        <a href="/politicas/privacidad" class="transition hover:text-white">Privacidad</a>
-        <a href="/politicas/terminos" class="transition hover:text-white">Términos</a>
-        <a href="/politicas/cookies" class="transition hover:text-white">Cookies</a>
+        <a href={`${siteConfig.storeUrl}/politicas/privacidad/`} data-cross-site class="transition hover:text-white">Privacidad</a>
+        <a href={`${siteConfig.storeUrl}/politicas/terminos/`} data-cross-site class="transition hover:text-white">Términos</a>
+        <a href={`${siteConfig.storeUrl}/politicas/cookies/`} data-cross-site class="transition hover:text-white">Cookies</a>
       </div>
     </div>
   </div>

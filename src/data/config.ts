@@ -50,7 +50,7 @@ export const brands = [
 ];
 
 export const navLinks = [
-  { href: '/', label: 'Inicio' },
+  { href: siteConfig.url, label: 'Inicio', crossSite: true },
   { href: `${siteConfig.storeUrl}/shop/`, label: 'Tienda' },
   { href: `${siteConfig.storeUrl}/ofertas/`, label: 'Ofertas' },
   { href: `${siteConfig.storeUrl}/nuestras-tiendas/`, label: 'Sucursales' },
@@ -113,7 +113,7 @@ export const heroSlides = [
 ];
 
 export const socialLinks = [
-  { name: 'Instagram', href: 'https://instagram.com/oliwwi', icon: 'instagram' },
-  { name: 'TikTok', href: 'https://tiktok.com/@oliwwi', icon: 'tiktok' },
+  { name: 'Instagram', href: 'https://instagram.com/oliwwi_ec', icon: 'instagram' },
+  { name: 'TikTok', href: 'https://tiktok.com/@oliwwi_makeup', icon: 'tiktok' },
   { name: 'Facebook', href: 'https://facebook.com/oliwwi', icon: 'facebook' },
 ];

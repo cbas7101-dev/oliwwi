@@ -24,7 +24,7 @@ const filteredProducts = showDiscountOnly
         <h2 id={`carousel-${title.toLowerCase().replace(/\s+/g, '-')}`} class="font-display text-4xl font-semibold leading-none tracking-tight text-ink sm:text-5xl">{title}</h2>
       </div>
       {ctaText && ctaLink && (
-        <a href={ctaLink} class="button-secondary self-start sm:self-auto">{ctaText}</a>
+        <a href={ctaLink} data-cross-site={ctaLink.startsWith('http') ? true : undefined} class="button-secondary self-start sm:self-auto">{ctaText}</a>
       )}
     </header>
 

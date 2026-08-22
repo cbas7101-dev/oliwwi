@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/tienda",
+      "destination": "https://tienda.oliwwi.com/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/tienda/:path*",
+      "destination": "https://tienda.oliwwi.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "https://tienda.oliwwi.com/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/carrito",
+      "destination": "https://tienda.oliwwi.com/cart/",
+      "permanent": true
+    },
+    {
+      "source": "/ofertas",
+      "destination": "https://tienda.oliwwi.com/ofertas/",
+      "permanent": true
+    },
+    {
+      "source": "/sucursales",
+      "destination": "https://tienda.oliwwi.com/nuestras-tiendas/",
+      "permanent": true
+    },
+    {
+      "source": "/nosotros",
+      "destination": "https://tienda.oliwwi.com/nosotros/",
+      "permanent": true
+    }
+  ]
+}
