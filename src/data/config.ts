@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Oliwwi',
   tagline: 'Maquillaje, skincare coreano y cuidado personal 100% original',
   url: 'https://www.oliwwi.com',
-  storeUrl: 'http://tienda.oliwwi.com',
+  storeUrl: 'https://tienda.oliwwi.com',
   whatsappBase: 'https://wa.me/593',
 };
 
