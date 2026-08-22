@@ -32,7 +32,7 @@ const { currentPath } = Astro.props;
 
     <!-- Search (desktop) -->
     <div class="hidden lg:flex-1 max-w-md mx-8">
-      <form action={siteConfig.storeUrl + '/search'} method="get" target="_blank" class="relative">
+      <form action={siteConfig.storeUrl + '/'} method="get" target="_blank" class="relative">
         <label for="header-search" class="sr-only">Buscar en la tienda</label>
         <input
           id="header-search"
@@ -73,7 +73,7 @@ const { currentPath } = Astro.props;
         <div class="absolute left-0 top-full mt-2 w-[520px] bg-white rounded-2xl border border-ink/10 shadow-card p-4 opacity-0 invisible group-open:opacity-100 group-open:visible transition-all duration-200 z-50">
           <div class="grid grid-cols-2 gap-4">
             {brands.map((brand) => (
-              <a href={`/catalogo?marca=${brand.slug}`} class="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-pale transition">
+              <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-pale transition">
                 <img src={brand.logo} alt={brand.name} class="h-8 w-auto object-contain" />
                 <span class="font-display text-sm font-medium text-ink">{brand.name}</span>
               </a>
@@ -120,7 +120,7 @@ const { currentPath } = Astro.props;
             </a>
           ))}
           <div class="pt-2 border-t border-ink/10">
-            <a href="/marcas" class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-brand-dark">Todas las marcas</a>
+            <a href={`${siteConfig.storeUrl}/shop/`} target="_blank" rel="noopener noreferrer" class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-brand-dark">Todas las marcas</a>
           </div>
         </nav>
       </details>

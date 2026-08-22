@@ -10,6 +10,7 @@ import BranchesSection from '../components/BranchesSection.astro';
 import SocialSection from '../components/SocialSection.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { products } from '../data/store';
+import { siteConfig } from '../data/config';
 ---
 
 <Layout
@@ -34,7 +35,7 @@ import { products } from '../data/store';
     subtitle="Llegaron tus nuevos favoritos"
     products={products}
     ctaText="Ver catálogo completo"
-    ctaLink="/catalogo"
+    ctaLink={`${siteConfig.storeUrl}/shop/`}
   />
 
   <ProductCarousel
@@ -42,7 +43,7 @@ import { products } from '../data/store';
     subtitle="Descuentos exclusivos por tiempo limitado"
     products={products}
     ctaText="Ver todas las ofertas"
-    ctaLink="/ofertas"
+    ctaLink={`${siteConfig.storeUrl}/ofertas/`}
     showDiscountOnly={true}
   />
 
@@ -53,7 +54,7 @@ import { products } from '../data/store';
     headline="El skincare no tiene género"
     subhead="Descubre tu rutina ideal con productos que cuidan tu piel"
     ctaText="Encuentra tu rutina ideal aquí"
-    ctaLink="/catalogo?cat=skincare"
+    ctaLink={`${siteConfig.storeUrl}/shop/`}
     ctaVariant="outline"
     position="center"
   />
@@ -68,7 +69,7 @@ import { products } from '../data/store';
     headline="Tus favoritos, mejor precio"
     subhead="Descuentos exclusivos en marcas que amas. Solo por tiempo limitado."
     ctaText="Ver todas las ofertas"
-    ctaLink="/ofertas"
+    ctaLink={`${siteConfig.storeUrl}/ofertas/`}
     ctaVariant="primary"
     position="right"
   />

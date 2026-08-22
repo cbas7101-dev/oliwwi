@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: 'Oliwwi',
   tagline: 'Maquillaje, skincare coreano y cuidado personal 100% original',
-  url: 'https://oliwwi.vercel.app',
-  storeUrl: 'https://oliwwi.dreamhosters.com',
+  url: 'https://www.oliwwi.com',
+  storeUrl: 'http://tienda.oliwwi.com',
   whatsappBase: 'https://wa.me/593',
 };
 
@@ -51,11 +51,10 @@ export const brands = [
 
 export const navLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/marcas', label: 'Marcas' },
-  { href: '/ofertas', label: 'Ofertas' },
-  { href: '/sucursales', label: 'Sucursales' },
-  { href: '/nosotros', label: 'Nosotros' },
-  { href: '/tienda', label: 'Tienda', external: true },
+  { href: `${siteConfig.storeUrl}/shop/`, label: 'Tienda' },
+  { href: `${siteConfig.storeUrl}/ofertas/`, label: 'Ofertas' },
+  { href: `${siteConfig.storeUrl}/nuestras-tiendas/`, label: 'Sucursales' },
+  { href: `${siteConfig.storeUrl}/nosotros/`, label: 'Nosotros' },
 ];
 
 export const benefits = [
@@ -74,9 +73,9 @@ export const heroSlides = [
     headline: 'Todo lo que amas, más cerca de ti',
     subhead: 'Maquillaje, skincare coreano y cuidado personal 100% original',
     ctaText: 'Comprar online',
-    ctaLink: '/tienda',
+    ctaLink: `${siteConfig.storeUrl}/shop/`,
     secondaryText: 'Ver favoritos',
-    secondaryLink: '#favoritos',
+    secondaryLink: '#carousel-novedades',
   },
   {
     id: 2,
@@ -85,9 +84,9 @@ export const heroSlides = [
     headline: 'Tu skincare, sin vueltas',
     subhead: 'K-beauty, sérums y rutinas para cada tipo de piel',
     ctaText: 'Explorar skincare',
-    ctaLink: '/catalogo?cat=skincare',
+    ctaLink: `${siteConfig.storeUrl}/shop/`,
     secondaryText: 'Ver marcas',
-    secondaryLink: '/marcas',
+    secondaryLink: '#marcas-heading',
   },
   {
     id: 3,
@@ -96,9 +95,9 @@ export const heroSlides = [
     headline: 'Tus favoritos, mejor precio',
     subhead: 'Descuentos exclusivos en marcas que amas',
     ctaText: 'Ver ofertas',
-    ctaLink: '/ofertas',
+    ctaLink: `${siteConfig.storeUrl}/ofertas/`,
     secondaryText: 'Suscribirme',
-    secondaryLink: '#newsletter',
+    secondaryLink: '#newsletter-heading',
   },
   {
     id: 4,
@@ -107,9 +106,9 @@ export const heroSlides = [
     headline: 'Pide por WhatsApp, recoge en tienda',
     subhead: 'Elige tu sucursal y tu pedido llega directo al chat',
     ctaText: 'Elegir sucursal',
-    ctaLink: '/sucursales',
+    ctaLink: '#sucursales',
     secondaryText: 'Cómo funciona',
-    secondaryLink: '/nosotros',
+    secondaryLink: `${siteConfig.storeUrl}/nosotros/`,
   },
 ];
 
