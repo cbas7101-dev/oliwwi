@@ -1,29 +1,84 @@
-<section id="redes" class="section-space overflow-hidden bg-brand text-white scroll-mt-24">
+---
+---
+
+<!-- Social / Instagram Feed -->
+<section id="redes" class="section-space bg-white" aria-labelledby="social-heading" data-reveal>
   <div class="page-shell">
-    <div class="grid items-end gap-8 md:grid-cols-2" data-reveal>
-      <div>
-        <span class="eyebrow !text-white/80">La comunidad Oliwwi</span>
-        <h2 class="max-w-[10ch] font-display text-4xl font-semibold leading-none tracking-tight sm:text-5xl">Novedades, promociones y mucho amor.</h2>
-      </div>
-      <p class="max-w-lg text-base leading-relaxed text-white/75 md:justify-self-end">Síguenos para descubrir lanzamientos, fotos y videos de nuestros productos.</p>
+    <header class="mb-12 text-center lg:text-left max-w-2xl mx-auto lg:mx-0" data-reveal>
+      <span class="eyebrow">@oliwwi_ec</span>
+      <h2 id="social-heading" class="font-display text-4xl font-semibold leading-none tracking-tight text-ink sm:text-5xl mt-2">
+        La comunidad Oliwwi
+      </h2>
+      <p class="mt-5 max-w-md leading-relaxed text-muted mx-auto lg:mx-0">
+        Novedades, promociones y mucho amor. Síguenos para descubrir lanzamientos, fotos y videos de nuestros productos.
+      </p>
+    </header>
+
+    <!-- Social Cards Grid -->
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8" data-reveal>
+      <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-brand-pale border border-ink/05 hover:shadow-card transition">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div class="absolute bottom-4 left-4 right-4 z-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-brand font-display font-semibold text-sm">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-3.584-.069-4.849-.149-3.225-1.664-4.771-4.919-4.919-1.266-.058-1.644-.07-4.85-.07-3.204 0-3.584.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zM12 6.865a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 1 0 6.666 3.333 3.333 0 0 1 0-6.666zm0 1.332c-1.417 0-2.568.956-2.962 2.192h.002c.394 1.236 1.552 2.192 2.96 2.192s2.568-.956 2.96-2.192h-.002c-.395-1.236-1.553-2.192-2.959-2.192z" />
+            </svg>
+            Instagram
+          </span>
+          <h3 class="mt-4 text-xl font-display font-semibold text-white">@oliwwi_ec</h3>
+          <p class="text-white/70 text-sm">Fotos, reels y novedades</p>
+        </div>
+      </a>
+
+      <a href="https://www.tiktok.com/@oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-black border border-ink/05 hover:shadow-card transition">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div class="absolute bottom-4 left-4 right-4 z-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-black font-display font-semibold text-sm">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16.1 19.2V8.8c0-.7-.7-1.3-1.5-1.3h-3.2c-.8 0-1.5.6-1.5 1.3v10.4c0 .7.7 1.3 1.5 1.3h3.2c.8 0 1.5-.6 1.5-1.3zm-9.2-12.2c0-1.6 1.3-2.9 2.9-2.9s2.9 1.3 2.9 2.9-1.3 2.9-2.9 2.9-2.9-1.3-2.9-2.9zm13.4 13.8c-.9 2.8-3 5-5.7 5.5v-2.5c1.8-.3 3.2-1.9 3.2-3.9 0-1.6-1.3-2.9-2.9-2.9s-2.9 1.3-2.9 2.9c0 .9.5 1.7 1.3 2.1-.7.2-1.4.4-2.1.5v2.6c3.6-.7 6.4-3.2 6.4-6.4z" />
+            </svg>
+            TikTok
+          </span>
+          <h3 class="mt-4 text-xl font-display font-semibold text-white">@oliwwi_makeup</h3>
+          <p class="text-white/70 text-sm">Videos y tendencias</p>
+        </div>
+      </a>
+
+      <a href="https://t.me/oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-[#0088cc] border border-ink/05 hover:shadow-card transition">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div class="absolute bottom-4 left-4 right-4 z-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-[#0088cc] font-display font-semibold text-sm">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+            Telegram
+          </span>
+          <h3 class="mt-4 text-xl font-display font-semibold text-white">@oliwwi_makeup</h3>
+          <p class="text-white/70 text-sm">Canal y comunidad</p>
+        </div>
+      </a>
     </div>
 
-    <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal>
-      <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noreferrer" class="group rounded-[1.7rem] border border-white/20 bg-white/10 p-5 transition hover:-translate-y-1 hover:bg-white hover:text-ink">
-        <span class="text-xs font-bold uppercase tracking-[0.16em] opacity-70">Instagram</span>
-        <strong class="mt-8 block break-words font-display text-3xl font-semibold tracking-tight">@oliwwi_ec</strong>
-        <span class="mt-1 block text-sm opacity-70">Fotos y novedades</span>
-      </a>
-      <a href="https://t.me/oliwwi_makeup" target="_blank" rel="noreferrer" class="group rounded-[1.7rem] border border-white/20 bg-white/10 p-5 transition hover:-translate-y-1 hover:bg-white hover:text-ink">
-        <span class="text-xs font-bold uppercase tracking-[0.16em] opacity-70">Telegram</span>
-        <strong class="mt-8 block break-words font-display text-3xl font-semibold tracking-tight">@oliwwi_makeup</strong>
-        <span class="mt-1 block text-sm opacity-70">Canal y novedades</span>
-      </a>
-      <a href="https://www.tiktok.com/@oliwwi_makeup" target="_blank" rel="noreferrer" class="group rounded-[1.7rem] border border-white/20 bg-white/10 p-5 transition hover:-translate-y-1 hover:bg-white hover:text-ink">
-        <span class="text-xs font-bold uppercase tracking-[0.16em] opacity-70">TikTok</span>
-        <strong class="mt-8 block break-words font-display text-3xl font-semibold tracking-tight">@oliwwi_makeup</strong>
-        <span class="mt-1 block text-sm opacity-70">Videos y novedades</span>
-      </a>
+    <!-- Instagram Feed Placeholder -->
+    <div data-reveal>
+      <p class="text-center text-muted mb-6">Feed de Instagram <span class="text-brand">@oliwwi_ec</span></p>
+      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-6" role="list" aria-label="Posts de Instagram">
+        {[1,2,3,4,5,6].map((i) => (
+          <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noopener noreferrer" class="aspect-square rounded-xl overflow-hidden bg-cream group relative" role="listitem">
+            <img
+              src={`https://placehold.co/300x300/fceef1/e92672?text=Post+${i}`}
+              alt={`Post de Instagram ${i}`}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <svg class="h-10 w-10 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </section>

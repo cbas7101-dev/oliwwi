@@ -1,34 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import CategorySection from '../components/CategorySection.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import BrandMarquee from '../components/BrandMarquee.astro';
+import BenefitsStrip from '../components/BenefitsStrip.astro';
+import BrandGrid from '../components/BrandGrid.astro';
+import ProductCarousel from '../components/ProductCarousel.astro';
+import BannerCTA from '../components/BannerCTA.astro';
 import BranchesSection from '../components/BranchesSection.astro';
 import SocialSection from '../components/SocialSection.astro';
-import ProductGrid from '../components/react/ProductGrid';
+import Newsletter from '../components/Newsletter.astro';
 import { products } from '../data/store';
-
-const featuredProducts = [products[0], products[2], products[6], products[7]];
 ---
 
-<Layout>
-	<Hero />
-	<CategorySection />
+<Layout
+  title="Oliwwi | Maquillaje y skincare en Ecuador"
+  description="Maquillaje, skincare coreano y cuidado personal 100% original. Elige tu sucursal Oliwwi y pide por WhatsApp."
+>
+  <!-- Hero Carousel -->
+  <HeroCarousel />
 
-	<section class="section-space bg-white">
-		<div class="page-shell">
-			<div class="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between" data-reveal>
-				<div>
-					<span class="eyebrow">Favoritos Oliwwi</span>
-					<h2 class="font-display text-4xl font-semibold leading-none tracking-tight text-ink sm:text-5xl">Para probar, amar y repetir.</h2>
-				</div>
-				<a href="/catalogo" class="button-secondary self-start sm:self-auto">Ver todos los productos</a>
-			</div>
-			<div data-reveal>
-				<ProductGrid products={featuredProducts} client:load />
-			</div>
-		</div>
-	</section>
+  <!-- Benefits Strip -->
+  <BenefitsStrip />
 
-	<BranchesSection />
-	<SocialSection />
+  <!-- Brand Marquee -->
+  <BrandMarquee />
+
+  <!-- Compra por Marca -->
+  <BrandGrid />
+
+  <!-- Product Carousels -->
+  <ProductCarousel
+    title="Novedades"
+    subtitle="Llegaron tus nuevos favoritos"
+    products={products}
+    ctaText="Ver catálogo completo"
+    ctaLink="/catalogo"
+  />
+
+  <ProductCarousel
+    title="Ofertas de la semana"
+    subtitle="Descuentos exclusivos por tiempo limitado"
+    products={products}
+    ctaText="Ver todas las ofertas"
+    ctaLink="/ofertas"
+    showDiscountOnly={true}
+  />
+
+  <!-- Banner CTA -->
+  <BannerCTA
+    image="/img/banner-1.jpg"
+    alt="Skincare sin género"
+    headline="El skincare no tiene género"
+    subhead="Descubre tu rutina ideal con productos que cuidan tu piel"
+    ctaText="Encuentra tu rutina ideal aquí"
+    ctaLink="/catalogo?cat=skincare"
+    ctaVariant="outline"
+    position="center"
+  />
+
+  <!-- Sucursales -->
+  <BranchesSection />
+
+  <!-- Banner CTA 2 -->
+  <BannerCTA
+    image="/img/banner-2.jpg"
+    alt="Ofertas de temporada"
+    headline="Tus favoritos, mejor precio"
+    subhead="Descuentos exclusivos en marcas que amas. Solo por tiempo limitado."
+    ctaText="Ver todas las ofertas"
+    ctaLink="/ofertas"
+    ctaVariant="primary"
+    position="right"
+  />
+
+  <!-- Social / Instagram -->
+  <SocialSection />
+
+  <!-- Newsletter -->
+  <Newsletter />
 </Layout>

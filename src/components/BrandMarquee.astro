@@ -1,0 +1,80 @@
+---
+import { brands } from '../data/config';
+---
+
+<!-- Brand Logos Marquee -->
+<div class="overflow-hidden bg-white py-8 border-y border-ink/10" aria-label="Marcas disponibles" id="brand-marquee">
+  <div class="flex items-center gap-12 lg:gap-20 whitespace-nowrap" id="marquee-track" role="list">
+    {brands.map((brand) => (
+      <div class="flex-shrink-0" role="listitem">
+        <a href={`/catalogo?marca=${brand.slug}`} class="block opacity-70 hover:opacity-100 transition">
+          <img src={brand.logo} alt={brand.name} class="h-16 w-auto object-contain" loading="lazy" />
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const marquee = document.getElementById('brand-marquee');
+  const track = document.getElementById('marquee-track');
+
+  if (marquee && track) {
+    // Clone content for seamless infinite loop (right-to-left: disappears left, appears right)
+    const originalContent = track.innerHTML;
+    track.innerHTML = originalContent + originalContent;
+
+    const items = track.children;
+    let contentWidth = 0;
+    let animationId: number;
+    let position = 0;
+    const speed = 0.8; // pixels per frame (slightly faster)
+    let isPaused = false;
+
+    function calculateWidth() {
+      contentWidth = 0;
+      for (let i = 0; i < items.length / 2; i++) {
+        contentWidth += items[i].offsetWidth;
+      }
+      // Add gap widths
+      const gap = 12; // lg:gap-20 = 20px, but we use 12 as base
+      contentWidth += gap * (items.length / 2 - 1);
+    }
+
+    function animate() {
+      if (!isPaused) {
+        position -= speed; // Move LEFT (negative) = content flows right-to-left
+        if (Math.abs(position) >= contentWidth) {
+          position += contentWidth; // Seamless loop: reset to start of second copy
+        }
+        track.style.transform = `translateX(${position}px)`;
+      }
+      animationId = requestAnimationFrame(animate);
+    }
+
+    // Pause on hover
+    marquee.addEventListener('mouseenter', () => { isPaused = true; });
+    marquee.addEventListener('mouseleave', () => { isPaused = false; });
+
+    // Recalculate on resize
+    const resizeObserver = new ResizeObserver(() => {
+      calculateWidth();
+    });
+    resizeObserver.observe(marquee);
+
+    calculateWidth();
+    animate();
+
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+      cancelAnimationFrame(animationId);
+      resizeObserver.disconnect();
+    });
+  }
+</script>
+
+<style>
+  #marquee-track {
+    will-change: transform;
+  }
+</style>

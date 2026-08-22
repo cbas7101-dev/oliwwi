@@ -11,9 +11,12 @@ export interface Product {
   name: string;
   category: ProductCategory;
   unitPrice: string;
+  compareAtPrice?: string;
+  discountPct?: number;
   wholesalePrice: string;
   extra?: string;
   color: 'rose' | 'pink' | 'peach' | 'lilac' | 'aqua';
+  image?: string;
 }
 
 export interface Branch {
@@ -32,9 +35,12 @@ export const products: Product[] = [
     name: 'Tinta labial larga duración USHAS',
     category: 'Maquillaje',
     unitPrice: '$2.00',
+    compareAtPrice: '$2.50',
+    discountPct: 20,
     wholesalePrice: '$1.50 c/u',
     extra: 'Caja x24: $30',
-    color: 'rose'
+    color: 'rose',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=USHAS+Tinta'
   },
   {
     id: 'desmaquillante-rosas-ushas',
@@ -42,9 +48,12 @@ export const products: Product[] = [
     name: 'Desmaquillante de Rosas USHAS',
     category: 'Skincare',
     unitPrice: '$3.50',
+    compareAtPrice: '$4.20',
+    discountPct: 17,
     wholesalePrice: '$2.90 c/u',
     extra: 'Caja x12: $26',
-    color: 'pink'
+    color: 'pink',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=USHAS+Desmaquillante'
   },
   {
     id: 'dr-althea-345',
@@ -52,8 +61,11 @@ export const products: Product[] = [
     name: '345 Crema Hidratante (gel)',
     category: 'Skincare coreano',
     unitPrice: '$37.00',
+    compareAtPrice: '$42.00',
+    discountPct: 12,
     wholesalePrice: '$33.00 c/u',
-    color: 'peach'
+    color: 'peach',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=Dr+Althea+345'
   },
   {
     id: 'dr-althea-147',
@@ -62,7 +74,8 @@ export const products: Product[] = [
     category: 'Skincare coreano',
     unitPrice: '$36.00',
     wholesalePrice: '$33.00 c/u',
-    color: 'lilac'
+    color: 'lilac',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=Dr+Althea+147'
   },
   {
     id: 'boj-protector-solar',
@@ -70,8 +83,11 @@ export const products: Product[] = [
     name: 'Protector Solar (arroz + probióticos)',
     category: 'Skincare coreano',
     unitPrice: '$26.00',
+    compareAtPrice: '$29.00',
+    discountPct: 10,
     wholesalePrice: '$21.50 c/u',
-    color: 'peach'
+    color: 'peach',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=BOJ+Protector'
   },
   {
     id: 'boj-aqua-fresh',
@@ -80,7 +96,8 @@ export const products: Product[] = [
     category: 'Skincare coreano',
     unitPrice: '$26.00',
     wholesalePrice: '$22.50 c/u',
-    color: 'aqua'
+    color: 'aqua',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=BOJ+Aqua+Fresh'
   },
   {
     id: 'manteca-unicornio',
@@ -88,9 +105,12 @@ export const products: Product[] = [
     name: 'Manteca Corporal “Caca de Unicornio”',
     category: 'Cuidado corporal',
     unitPrice: '$11.00',
+    compareAtPrice: '$13.50',
+    discountPct: 19,
     wholesalePrice: '$9.20 c/u',
     extra: 'Aromas: chicle / espuma de colores',
-    color: 'lilac'
+    color: 'lilac',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=Manteca+Unicornio'
   },
   {
     id: 'kit-cebolla',
@@ -98,8 +118,11 @@ export const products: Product[] = [
     name: 'Kit Shampoo + Acondicionador de Cebolla',
     category: 'Cuidado capilar',
     unitPrice: '$60 kit / $30 solo shampoo',
+    compareAtPrice: '$70 kit / $35 solo shampoo',
+    discountPct: 14,
     wholesalePrice: '$25.00 c/u',
-    color: 'rose'
+    color: 'rose',
+    image: 'https://placehold.co/400x400/fceef1/e92672?text=Kit+Cebolla'
   }
 ];
 

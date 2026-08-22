@@ -1,0 +1,55 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+  headline: string;
+  subhead?: string;
+  ctaText: string;
+  ctaLink: string;
+  ctaVariant?: 'primary' | 'outline';
+  position?: 'left' | 'center' | 'right';
+}
+
+const { image, alt, headline, subhead, ctaText, ctaLink, ctaVariant = 'primary', position = 'left' } = Astro.props;
+
+const alignClasses = {
+  left: 'items-start text-left',
+  center: 'items-center text-center',
+  right: 'items-end text-right',
+};
+---
+
+<!-- Full-width Banner CTA -->
+<section class="relative w-full overflow-hidden" data-reveal>
+  <img
+    src={image}
+    alt={alt}
+    class="w-full h-[380px] sm:h-[440px] object-cover"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/40 via-ink/10 to-transparent" />
+  <div class="absolute inset-0 flex page-shell {alignClasses[position]}">
+    <div class="w-full max-w-2xl p-6 sm:p-10">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold leading-none tracking-tight text-white mb-3 drop-shadow-lg">
+        {headline}
+      </h2>
+      {subhead && (
+        <p class="text-base sm:text-lg text-white/90 mb-6 max-w-md drop-shadow">
+          {subhead}
+        </p>
+      )}
+      <a
+        href={ctaLink}
+        class:list={[
+          'inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-display font-semibold text-sm transition',
+          ctaVariant === 'primary'
+            ? 'bg-brand text-white hover:bg-brand-dark shadow-soft'
+            : 'bg-white/10 backdrop-blur text-white hover:bg-white/20 border border-white/30'
+        ]}
+      >
+        {ctaText}
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+      </a>
+    </div>
+  </div>
+</section>

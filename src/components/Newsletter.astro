@@ -1,0 +1,33 @@
+---
+---
+
+<!-- Newsletter CTA -->
+<section class="py-16 bg-brand-pale" aria-labelledby="newsletter-heading" data-reveal>
+  <div class="page-shell text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/30 text-brand font-display font-semibold text-sm mb-4">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C4 7 6.5 5 9 5c1.5 0 3 .5 4 1.5" /><path d="M22 7h-2.5" /><path d="M18 7h2.5" /></svg>
+      ¡No te pierdas lo nuevo!
+    </div>
+    <h2 id="newsletter-heading" class="font-display text-3xl sm:text-4xl font-semibold leading-none tracking-tight text-ink mb-3">
+      Suscríbete y sé la primera en enterarte
+    </h2>
+    <p class="text-muted max-w-md mx-auto mb-6">
+      Novedades, ofertas exclusivas y tips de belleza directo a tu bandeja. Sin spam, solo amor.
+    </p>
+    <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3" action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="email" class="sr-only">Tu email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="tu@email.com"
+        required
+        class="flex-1 h-12 px-5 bg-white border border-ink/10 rounded-full text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+      />
+      <button type="submit" class="flex-shrink-0 px-6 py-3 rounded-full bg-brand text-white font-display font-semibold text-sm hover:bg-brand-dark transition whitespace-nowrap">
+        Suscribirme
+      </button>
+    </form>
+    <p class="text-xs text-muted mt-3">Al suscribirte aceptas nuestra <a href="/politicas/privacidad" class="underline hover:text-brand">Política de Privacidad</a>.</p>
+  </div>
+</section>
