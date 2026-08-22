@@ -1,5 +1,5 @@
 ---
-import { brands } from '../data/config';
+import { brands, siteConfig } from '../data/config';
 ---
 
 <!-- Brand Logos Marquee -->
@@ -7,7 +7,7 @@ import { brands } from '../data/config';
   <div class="flex items-center gap-12 lg:gap-20 whitespace-nowrap" id="marquee-track" role="list">
     {brands.map((brand) => (
       <div class="flex-shrink-0" role="listitem">
-        <a href={`/catalogo?marca=${brand.slug}`} class="block opacity-70 hover:opacity-100 transition">
+        <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} data-cross-site class="block opacity-70 hover:opacity-100 transition">
           <img src={brand.logo} alt={brand.name} class="h-16 w-auto object-contain" loading="lazy" />
         </a>
       </div>

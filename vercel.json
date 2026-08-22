@@ -17,6 +17,11 @@
       "permanent": true
     },
     {
+      "source": "/catalogo",
+      "destination": "https://tienda.oliwwi.com/shop/",
+      "permanent": true
+    },
+    {
       "source": "/carrito",
       "destination": "https://tienda.oliwwi.com/cart/",
       "permanent": true

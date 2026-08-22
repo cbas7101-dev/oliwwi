@@ -1,3 +1,7 @@
+---
+import { siteConfig } from '../data/config';
+---
+
 <section class="relative overflow-hidden bg-brand-pale">
   <img src="/hero-1.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
   <div class="absolute inset-0 bg-white/55"></div>
@@ -13,7 +17,7 @@
       </h1>
       <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">Maquillaje, skincare coreano y cuidado personal para expresarte a tu manera. Elige tu sucursal y pide directo por WhatsApp.</p>
       <div class="mt-8 flex flex-col gap-3 min-[430px]:flex-row">
-        <a href="/catalogo" class="button-primary">
+        <a href={`${siteConfig.storeUrl}/shop/`} data-cross-site class="button-primary">
           Ver catálogo
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
         </a>

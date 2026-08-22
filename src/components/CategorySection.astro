@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '../data/config';
+
 const categories = [
   { name: 'Maquillaje', note: 'Color que habla por ti', className: 'bg-[#ffd3e2]', icon: 'lip' },
   { name: 'Skincare Coreano', note: 'Tu ritual de cuidado', className: 'bg-[#f6e8d9]', icon: 'drop' },
@@ -15,7 +17,7 @@ const categories = [
     </div>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1.15fr]" data-reveal>
       {categories.map((category, index) => (
-        <a href="/catalogo" class:list={['group relative min-h-60 overflow-hidden rounded-[2rem] p-5 transition duration-300 hover:-translate-y-1 sm:min-h-72', category.className, index % 2 === 1 ? 'lg:mt-10' : '']}>
+        <a href={`${siteConfig.storeUrl}/shop/`} data-cross-site class:list={['group relative min-h-60 overflow-hidden rounded-[2rem] p-5 transition duration-300 hover:-translate-y-1 sm:min-h-72', category.className, index % 2 === 1 ? 'lg:mt-10' : '']}>
           <svg class="h-8 w-8 text-ink/70 transition duration-300 group-hover:rotate-6 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
             {category.icon === 'drop' && <path d="M12 3S6 9.2 6 14a6 6 0 0 0 12 0c0-4.8-6-11-6-11Z" />}
             {category.icon === 'lip' && <><path d="M8 4h8v5H8zM7 9h10v11H7z" /><path d="m9 4 4-2 3 2" /></>}
