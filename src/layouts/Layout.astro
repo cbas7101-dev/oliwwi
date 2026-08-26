@@ -23,11 +23,11 @@ const {
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<meta name="theme-color" content="#e92672" />
+		<meta name="theme-color" content="#611ac0" />
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header currentPath={Astro.url.pathname} />
+		<Header />
 		<main><slot /></main>
 		<Footer />
 		<ScrollReveal client:load />

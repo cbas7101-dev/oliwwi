@@ -4,24 +4,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          DEFAULT: '#e92672',
-          dark: '#bf1455',
-          soft: '#f8a8c7',
-          pale: '#ffe3ed'
+        primary: {
+          DEFAULT: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
+          dark: 'rgb(var(--color-primary-dark-rgb) / <alpha-value>)',
+          soft: 'rgb(var(--color-primary-soft-rgb) / <alpha-value>)',
+          pale: 'rgb(var(--color-primary-pale-rgb) / <alpha-value>)'
         },
-        cream: '#fff8f5',
-        blush: '#fceef1',
-        ink: '#21171b',
-        muted: '#74666c'
+        accent: {
+          DEFAULT: 'rgb(var(--color-accent-rgb) / <alpha-value>)',
+          pale: 'rgb(var(--color-accent-pale-rgb) / <alpha-value>)'
+        },
+        bg: 'rgb(var(--color-bg-rgb) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface-rgb) / <alpha-value>)',
+        ink: 'rgb(var(--color-text-rgb) / <alpha-value>)',
+        muted: 'rgb(var(--color-text-muted-rgb) / <alpha-value>)',
+        brand: {
+          DEFAULT: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
+          dark: 'rgb(var(--color-primary-dark-rgb) / <alpha-value>)',
+          soft: 'rgb(var(--color-primary-soft-rgb) / <alpha-value>)',
+          pale: 'rgb(var(--color-primary-pale-rgb) / <alpha-value>)'
+        },
+        cream: 'rgb(var(--color-bg-rgb) / <alpha-value>)',
+        blush: 'rgb(var(--color-primary-pale-rgb) / <alpha-value>)'
       },
       fontFamily: {
         display: ['Fredoka Variable', 'Arial Rounded MT Bold', 'sans-serif'],
         body: ['Nunito Sans Variable', 'Arial', 'sans-serif']
       },
       boxShadow: {
-        soft: '0 16px 40px -20px rgba(151, 24, 76, 0.34)',
-        card: '0 26px 70px -38px rgba(100, 20, 54, 0.42)'
+        soft: '0 10px 30px -14px rgba(74, 20, 148, 0.28)',
+        card: '0 22px 60px -30px rgba(74, 20, 148, 0.38)'
       }
     }
   },

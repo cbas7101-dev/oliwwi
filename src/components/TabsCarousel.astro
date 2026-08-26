@@ -1,0 +1,145 @@
+---
+import ProductCard from './ProductCard.astro';
+import type { Product } from '../data/store';
+
+interface Tab {
+  id: string;
+  label: string;
+  products: Product[];
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  tabs: Tab[];
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const { title, subtitle, tabs, ctaText, ctaLink } = Astro.props;
+const baseId = title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
+---
+
+<section class="section-space bg-surface" aria-labelledby={`${baseId}-heading`} id={baseId} data-tabs-carousel>
+  <div class="page-shell">
+    <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal>
+      <div>
+        {subtitle && <span class="eyebrow">{subtitle}</span>}
+        <h2 id={`${baseId}-heading`} class="m-0">
+          <span class="pill-title">{title}</span>
+        </h2>
+      </div>
+      {ctaText && ctaLink && (
+        <a href={ctaLink} data-cross-site={ctaLink.startsWith('http') ? true : undefined} class="button-secondary self-start sm:self-auto">{ctaText}</a>
+      )}
+    </header>
+
+    <div class="mb-6 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap" role="tablist" aria-label={`Pestañas de ${title}`} data-reveal>
+      {tabs.map((tab, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`${baseId}-tab-${tab.id}`}
+          aria-selected={i === 0}
+          aria-controls={`${baseId}-panel-${tab.id}`}
+          data-tab-button={tab.id}
+          class:list={[
+            'min-h-11 shrink-0 rounded-full border px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide transition active:scale-[0.98]',
+            i === 0
+              ? 'border-primary bg-primary text-white shadow-soft'
+              : 'border-ink/15 bg-surface text-ink hover:border-primary/40 hover:text-primary-dark'
+          ]}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    {tabs.map((tab, i) => (
+      <div
+        role="tabpanel"
+        id={`${baseId}-panel-${tab.id}`}
+        aria-labelledby={`${baseId}-tab-${tab.id}`}
+        data-tab-panel={tab.id}
+        hidden={i !== 0}
+        class="relative"
+      >
+        <div
+          class="-mx-4 flex snap-x gap-5 overflow-x-auto scroll-smooth px-4 pb-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-1"
+          style="scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;"
+          data-carousel-track
+        >
+          {tab.products.map((product) => (
+            <div class="w-[70vw] max-w-[260px] shrink-0 snap-start min-[480px]:w-[220px] sm:w-[240px] lg:w-[268px]">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          class="absolute -left-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink/10 bg-surface text-ink shadow-soft transition hover:border-primary/40 hover:text-primary-dark lg:grid"
+          aria-label="Ver productos anteriores"
+          data-carousel-prev
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <button
+          type="button"
+          class="absolute -right-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink/10 bg-surface text-ink shadow-soft transition hover:border-primary/40 hover:text-primary-dark lg:grid"
+          aria-label="Ver productos siguientes"
+          data-carousel-next
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs-carousel] [data-tab-button]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const section = button.closest('section');
+      if (!section) return;
+      const tabId = button.dataset.tabButton;
+
+      section.querySelectorAll<HTMLElement>('[data-tab-button]').forEach((other) => {
+        const isActive = other === button;
+        other.setAttribute('aria-selected', String(isActive));
+        other.classList.toggle('border-primary', isActive);
+        other.classList.toggle('bg-primary', isActive);
+        other.classList.toggle('text-white', isActive);
+        other.classList.toggle('shadow-soft', isActive);
+        other.classList.toggle('border-ink/15', !isActive);
+        other.classList.toggle('bg-surface', !isActive);
+        other.classList.toggle('text-ink', !isActive);
+      });
+
+      section.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.tabPanel !== tabId;
+      });
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-tabs-carousel] [data-carousel-track]').forEach((track) => {
+    const wrapper = track.parentElement;
+    if (!wrapper) return;
+
+    const prev = wrapper.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const next = wrapper.querySelector<HTMLButtonElement>('[data-carousel-next]');
+
+    const step = () => {
+      const card = track.querySelector<HTMLElement>(':scope > div');
+      return card ? card.offsetWidth + 20 : 300;
+    };
+
+    prev?.addEventListener('click', () => {
+      track.scrollBy({ left: -step() * 2, behavior: 'smooth' });
+    });
+
+    next?.addEventListener('click', () => {
+      track.scrollBy({ left: step() * 2, behavior: 'smooth' });
+    });
+  });
+</script>

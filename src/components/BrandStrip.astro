@@ -1,0 +1,23 @@
+---
+import { brands } from '../data/config';
+---
+
+<section class="border-y border-ink/[0.06] bg-surface py-10" aria-labelledby="marcas-heading" data-reveal>
+  <div class="page-shell">
+    <h2 id="marcas-heading" class="mb-6 text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+      Nuestras marcas
+    </h2>
+    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+      {brands.map((brand) => (
+        <a
+          href={brand.categoryUrl}
+          data-cross-site
+          class="block grayscale opacity-60 transition duration-300 hover:grayscale-0 hover:opacity-100"
+          aria-label={`Productos ${brand.name}`}
+        >
+          <img src={brand.logo} alt={brand.name} class="h-12 w-auto max-w-[110px] object-contain sm:h-14" loading="lazy" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -17,9 +17,10 @@ import { branches } from '../data/store';
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal>
       {branches.map((branch) => {
-        const available = !!branch.phoneInternational;
+        const phone = branch.phoneInternational;
+        const available = Boolean(phone);
         const waUrl = available
-          ? `https://wa.me/${branch.phoneInternational.replace(/[^0-9]/g, '')}`
+          ? `https://wa.me/${phone!.replace(/[^0-9]/g, '')}`
           : '';
         return (
           <article class="relative bg-white rounded-2xl border border-ink/10 p-6 hover:shadow-card transition-all duration-300" data-reveal>

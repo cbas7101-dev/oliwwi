@@ -1,5 +1,5 @@
 ---
-import { brands, siteConfig } from '../data/config';
+import { brands } from '../data/config';
 ---
 
 <!-- Brand Logos Marquee -->
@@ -7,7 +7,7 @@ import { brands, siteConfig } from '../data/config';
   <div class="flex items-center gap-12 lg:gap-20 whitespace-nowrap" id="marquee-track" role="list">
     {brands.map((brand) => (
       <div class="flex-shrink-0" role="listitem">
-        <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} data-cross-site class="block opacity-70 hover:opacity-100 transition">
+        <a href={brand.categoryUrl} data-cross-site class="block opacity-70 hover:opacity-100 transition">
           <img src={brand.logo} alt={brand.name} class="h-16 w-auto object-contain" loading="lazy" />
         </a>
       </div>
@@ -20,11 +20,13 @@ import { brands, siteConfig } from '../data/config';
   const track = document.getElementById('marquee-track');
 
   if (marquee && track) {
+    const marqueeElement = marquee;
+    const trackElement = track;
     // Clone content for seamless infinite loop (right-to-left: disappears left, appears right)
-    const originalContent = track.innerHTML;
-    track.innerHTML = originalContent + originalContent;
+    const originalContent = trackElement.innerHTML;
+    trackElement.innerHTML = originalContent + originalContent;
 
-    const items = track.children;
+    const items = trackElement.children;
     let contentWidth = 0;
     let animationId: number;
     let position = 0;
@@ -34,7 +36,7 @@ import { brands, siteConfig } from '../data/config';
     function calculateWidth() {
       contentWidth = 0;
       for (let i = 0; i < items.length / 2; i++) {
-        contentWidth += items[i].offsetWidth;
+        contentWidth += (items[i] as HTMLElement).offsetWidth;
       }
       // Add gap widths
       const gap = 12; // lg:gap-20 = 20px, but we use 12 as base
@@ -47,20 +49,20 @@ import { brands, siteConfig } from '../data/config';
         if (Math.abs(position) >= contentWidth) {
           position += contentWidth; // Seamless loop: reset to start of second copy
         }
-        track.style.transform = `translateX(${position}px)`;
+        trackElement.style.transform = `translateX(${position}px)`;
       }
       animationId = requestAnimationFrame(animate);
     }
 
     // Pause on hover
-    marquee.addEventListener('mouseenter', () => { isPaused = true; });
-    marquee.addEventListener('mouseleave', () => { isPaused = false; });
+    marqueeElement.addEventListener('mouseenter', () => { isPaused = true; });
+    marqueeElement.addEventListener('mouseleave', () => { isPaused = false; });
 
     // Recalculate on resize
     const resizeObserver = new ResizeObserver(() => {
       calculateWidth();
     });
-    resizeObserver.observe(marquee);
+    resizeObserver.observe(marqueeElement);
 
     calculateWidth();
     animate();

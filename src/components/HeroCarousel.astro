@@ -12,7 +12,7 @@ import { heroSlides } from '../data/config';
           class="w-full h-[520px] sm:h-[600px] object-cover"
           loading="eager"
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-ink/30 via-transparent to-transparent" />
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/55 via-primary/25 to-transparent" />
         <div class="absolute inset-0 flex items-center page-shell">
           <div class="w-full max-w-2xl">
             <span class="inline-block px-3 py-1 rounded-full bg-white/90 backdrop-blur text-xs font-display font-semibold text-brand tracking-wide mb-4">
@@ -67,7 +67,7 @@ import { heroSlides } from '../data/config';
   <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="hero-dots" role="tablist" aria-label="Navegación del carrusel">
     {heroSlides.map((_, i) => (
       <button
-        class="w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition { i === 0 ? 'bg-white w-8' : '' }"
+        class:list={['h-2.5 rounded-full transition hover:bg-white', i === 0 ? 'w-8 bg-white' : 'w-2.5 bg-white/50']}
         data-index={i}
         role="tab"
         aria-selected={i === 0}
@@ -78,40 +78,35 @@ import { heroSlides } from '../data/config';
 </div>
 
 <script>
-  const track = document.getElementById('hero-track');
+  const track = document.getElementById('hero-track') as HTMLElement | null;
   const prevBtn = document.getElementById('hero-prev');
   const nextBtn = document.getElementById('hero-next');
   const dotsContainer = document.getElementById('hero-dots');
-  const slides = track?.children;
-  const dots = dotsContainer?.children;
+  const slides = track ? Array.from(track.children) : [];
+  const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
 
-  if (!track || !slides || slides.length === 0) {
+  if (!track || slides.length === 0) {
     prevBtn?.remove();
     nextBtn?.remove();
     dotsContainer?.remove();
   } else {
+    const heroTrack = track;
     let currentIndex = 0;
     const slideCount = slides.length;
     let autoplayInterval: number;
-    let isManualNav = false;
 
     function goToSlide(index: number, instant = false) {
       currentIndex = (index + slideCount) % slideCount;
       const translateX = -currentIndex * (100 / slideCount);
-      
+
+      heroTrack.style.transition = instant ? 'none' : 'transform 700ms ease-out';
+      heroTrack.style.transform = `translateX(${translateX}%)`;
+
       if (instant) {
-        track.style.transition = 'none';
-      } else {
-        track.style.transition = 'transform 700ms ease-out';
+        void heroTrack.offsetHeight;
+        heroTrack.style.transition = 'transform 700ms ease-out';
       }
-      track.style.transform = `translateX(${translateX}%)`;
-      
-      // Force reflow to ensure transition applies correctly
-      if (instant) {
-        track.offsetHeight; // trigger reflow
-        track.style.transition = 'transform 700ms ease-out';
-      }
-      
+
       updateDots();
     }
 
@@ -132,50 +127,38 @@ import { heroSlides } from '../data/config';
     }
     function stopAutoplay() { clearInterval(autoplayInterval); }
 
-    prevBtn?.addEventListener('click', () => { 
-      isManualNav = true;
-      prevSlide(); 
-      stopAutoplay(); 
-      startAutoplay(); 
-      setTimeout(() => { isManualNav = false; }, 100);
+    prevBtn?.addEventListener('click', () => {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
     });
-    nextBtn?.addEventListener('click', () => { 
-      isManualNav = true;
-      nextSlide(); 
-      stopAutoplay(); 
-      startAutoplay(); 
-      setTimeout(() => { isManualNav = false; }, 100);
+    nextBtn?.addEventListener('click', () => {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay();
     });
 
     dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { 
-        isManualNav = true;
-        goToSlide(i); 
-        stopAutoplay(); 
-        startAutoplay(); 
-        setTimeout(() => { isManualNav = false; }, 100);
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        stopAutoplay();
+        startAutoplay();
       });
     });
 
-    // Pause on hover
-    track.addEventListener('mouseenter', stopAutoplay);
-    track.addEventListener('mouseleave', startAutoplay);
+    heroTrack.addEventListener('mouseenter', stopAutoplay);
+    heroTrack.addEventListener('mouseleave', startAutoplay);
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { 
-        isManualNav = true;
-        prevSlide(); 
-        stopAutoplay(); 
-        startAutoplay(); 
-        setTimeout(() => { isManualNav = false; }, 100);
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+        stopAutoplay();
+        startAutoplay();
       }
-      if (e.key === 'ArrowRight') { 
-        isManualNav = true;
-        nextSlide(); 
-        stopAutoplay(); 
-        startAutoplay(); 
-        setTimeout(() => { isManualNav = false; }, 100);
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+        stopAutoplay();
+        startAutoplay();
       }
     });
 

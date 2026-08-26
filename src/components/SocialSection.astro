@@ -15,8 +15,8 @@
     </header>
 
     <!-- Social Cards Grid -->
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8" data-reveal>
-      <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-brand-pale border border-ink/05 hover:shadow-card transition">
+    <div class="-mx-4 mb-8 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:px-0 lg:grid-cols-3" data-reveal>
+      <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noopener noreferrer" class="group relative aspect-square w-[78vw] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl border border-ink/5 bg-brand-pale transition hover:shadow-card sm:w-auto sm:max-w-none">
         <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         <div class="absolute bottom-4 left-4 right-4 z-10">
           <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-brand font-display font-semibold text-sm">
@@ -34,7 +34,7 @@
         </div>
       </a>
 
-      <a href="https://www.tiktok.com/@oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-black border border-ink/05 hover:shadow-card transition">
+      <a href="https://www.tiktok.com/@oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square w-[78vw] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl border border-ink/5 bg-black transition hover:shadow-card sm:w-auto sm:max-w-none">
         <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         <div class="absolute bottom-4 left-4 right-4 z-10">
           <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-black font-display font-semibold text-sm">
@@ -48,7 +48,7 @@
         </div>
       </a>
 
-      <a href="https://t.me/oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden bg-[#0088cc] border border-ink/05 hover:shadow-card transition">
+      <a href="https://t.me/oliwwi_makeup" target="_blank" rel="noopener noreferrer" class="group relative aspect-square w-[78vw] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl border border-ink/5 bg-[#0088cc] transition hover:shadow-card sm:w-auto sm:max-w-none">
         <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         <div class="absolute bottom-4 left-4 right-4 z-10">
           <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-[#0088cc] font-display font-semibold text-sm">
@@ -66,11 +66,11 @@
     <!-- Instagram Feed Placeholder -->
     <div data-reveal>
       <p class="text-center text-muted mb-6">Feed de Instagram <span class="text-brand">@oliwwi_ec</span></p>
-      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-6" role="list" aria-label="Posts de Instagram">
+      <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6" role="list" aria-label="Posts de Instagram">
         {[1,2,3,4,5,6].map((i) => (
           <a href="https://www.instagram.com/oliwwi_ec/" target="_blank" rel="noopener noreferrer" class="aspect-square rounded-xl overflow-hidden bg-cream group relative" role="listitem">
             <img
-              src={`https://placehold.co/300x300/fceef1/e92672?text=Post+${i}`}
+              src={`https://placehold.co/300x300/efe3fb/611ac0?text=Post+${i}`}
               alt={`Post de Instagram ${i}`}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"

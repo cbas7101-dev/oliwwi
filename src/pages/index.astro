@@ -1,82 +1,97 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
-import BrandMarquee from '../components/BrandMarquee.astro';
-import BenefitsStrip from '../components/BenefitsStrip.astro';
-import BrandGrid from '../components/BrandGrid.astro';
+import BenefitsBanner from '../components/BenefitsBanner.astro';
+import BrandStrip from '../components/BrandStrip.astro';
 import ProductCarousel from '../components/ProductCarousel.astro';
+import TabsCarousel from '../components/TabsCarousel.astro';
 import BannerCTA from '../components/BannerCTA.astro';
 import BranchesSection from '../components/BranchesSection.astro';
 import SocialSection from '../components/SocialSection.astro';
-import Newsletter from '../components/Newsletter.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import { products } from '../data/store';
+import { novedades } from '../data/novedades';
+import { favoritos } from '../data/favoritos';
 import { siteConfig } from '../data/config';
+
+const skincareProducts = products.filter((product) =>
+  product.category === 'Skincare' || product.category === 'Skincare coreano'
+);
+
+const makeupProducts = [...favoritos, ...novedades].slice(0, 10);
+
+const bestSellerTabs = [
+  { id: 'maquillaje', label: 'Maquillaje', products: makeupProducts },
+  { id: 'skincare', label: 'Skincare', products: skincareProducts },
+  { id: 'essence', label: 'Essence', products: favoritos },
+];
 ---
 
 <Layout
   title="Oliwwi | Maquillaje y skincare en Ecuador"
   description="Maquillaje, skincare coreano y cuidado personal 100% original. Elige tu sucursal Oliwwi y pide por WhatsApp."
 >
-  <!-- Hero Carousel -->
   <HeroCarousel />
+  <BenefitsBanner />
+  <BrandStrip />
 
-  <!-- Benefits Strip -->
-  <BenefitsStrip />
-
-  <!-- Brand Marquee -->
-  <BrandMarquee />
-
-  <!-- Compra por Marca -->
-  <BrandGrid />
-
-  <!-- Product Carousels -->
   <ProductCarousel
-    title="Novedades"
-    subtitle="Llegaron tus nuevos favoritos"
-    products={products}
+    title="Favoritos Oliwwi"
+    subtitle="Los que siempre vuelven al carrito"
+    products={favoritos}
+    ctaText="Ver essence"
+    ctaLink={`${siteConfig.storeUrl}/product-category/essence/`}
+  />
+
+  <BannerCTA
+    image="/img/banner-promo-wide.jpg"
+    alt="Mujer aplicándose brillo labial frente a un espejo"
+    headline="Tu look, a tu manera"
+    subhead="Color, texturas y marcas originales para convertir tu rutina en tu momento favorito."
+    ctaText="Explorar maquillaje"
+    ctaLink={`${siteConfig.storeUrl}/shop/`}
+    ctaVariant="outline"
+    position="left"
+  />
+
+  <ProductCarousel
+    title="Lo nuevo"
+    subtitle="Recién llegados a Oliwwi"
+    products={novedades}
     ctaText="Ver catálogo completo"
     ctaLink={`${siteConfig.storeUrl}/shop/`}
   />
 
+  <TabsCarousel
+    title="Los más vendidos"
+    subtitle="Probados, amados y recomendados"
+    tabs={bestSellerTabs}
+    ctaText="Comprar todos"
+    ctaLink={`${siteConfig.storeUrl}/shop/`}
+  />
+
+  <BannerCTA
+    image="/img/banner-1.jpg"
+    alt="Colección de sérums y cremas para el cuidado de la piel"
+    headline="Tu piel cambia. Tu rutina también."
+    subhead="Encuentra hidratación, protección y K-beauty para lo que tu piel necesita hoy."
+    ctaText="Explorar skincare"
+    ctaLink={`${siteConfig.storeUrl}/shop/`}
+    ctaVariant="primary"
+    position="left"
+  />
+
+  <BranchesSection />
+
   <ProductCarousel
     title="Ofertas de la semana"
-    subtitle="Descuentos exclusivos por tiempo limitado"
+    subtitle="Precios especiales por tiempo limitado"
     products={products}
     ctaText="Ver todas las ofertas"
     ctaLink={`${siteConfig.storeUrl}/ofertas/`}
     showDiscountOnly={true}
   />
 
-  <!-- Banner CTA -->
-  <BannerCTA
-    image="/img/banner-1.jpg"
-    alt="Skincare sin género"
-    headline="El skincare no tiene género"
-    subhead="Descubre tu rutina ideal con productos que cuidan tu piel"
-    ctaText="Encuentra tu rutina ideal aquí"
-    ctaLink={`${siteConfig.storeUrl}/shop/`}
-    ctaVariant="outline"
-    position="center"
-  />
-
-  <!-- Sucursales -->
-  <BranchesSection />
-
-  <!-- Banner CTA 2 -->
-  <BannerCTA
-    image="/img/banner-2.jpg"
-    alt="Ofertas de temporada"
-    headline="Tus favoritos, mejor precio"
-    subhead="Descuentos exclusivos en marcas que amas. Solo por tiempo limitado."
-    ctaText="Ver todas las ofertas"
-    ctaLink={`${siteConfig.storeUrl}/ofertas/`}
-    ctaVariant="primary"
-    position="right"
-  />
-
-  <!-- Social / Instagram -->
   <SocialSection />
-
-  <!-- Newsletter -->
-  <Newsletter />
+  <ChatWidget />
 </Layout>

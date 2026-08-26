@@ -30,13 +30,13 @@ export default function BranchSelector() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex min-h-11 items-center gap-2 rounded-full border border-ink/10 bg-white px-3.5 py-2 font-display text-sm font-medium text-ink shadow-sm transition hover:border-brand/40 hover:text-brand-dark active:scale-[0.98]"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white p-0 font-display text-sm font-medium text-ink shadow-sm transition hover:border-brand/40 hover:text-brand-dark active:scale-[0.98] sm:w-auto sm:gap-2 sm:px-3.5 sm:py-2"
         aria-haspopup="dialog"
+        aria-label={selected ? selected.name : 'Elige tu sucursal'}
       >
         <MapPin className="h-4 w-4 text-brand" strokeWidth={2} />
         <span className="hidden sm:inline">{selected ? selected.name : 'Elige tu sucursal'}</span>
-        <span className="sm:hidden">{selected ? selected.name : 'Sucursal'}</span>
-        <ChevronDown className="h-3.5 w-3.5 text-muted" strokeWidth={2} />
+        <ChevronDown className="hidden h-3.5 w-3.5 text-muted sm:block" strokeWidth={2} />
       </button>
 
       {open && typeof document !== 'undefined' && createPortal(

@@ -1,3 +1,5 @@
+import { siteConfig } from './config';
+
 export type ProductCategory =
   | 'Maquillaje'
   | 'Skincare'
@@ -17,6 +19,10 @@ export interface Product {
   extra?: string;
   color: 'rose' | 'pink' | 'peach' | 'lilac' | 'aqua';
   image?: string;
+  /** SKU en WooCommerce: habilita el fallback de búsqueda directa al producto */
+  sku?: string;
+  /** ID de producto en WooCommerce: habilita add-to-cart nativo (TODO: exportar IDs desde wp-admin) */
+  wooProductId?: number;
 }
 
 export interface Branch {
@@ -26,6 +32,35 @@ export interface Branch {
   phoneDisplay: string | null;
   phoneInternational: string | null;
   schedule: string;
+}
+
+const brandCategorySlugs: Record<string, string> = {
+  Milani: 'milani',
+  essence: 'essence',
+  Catrice: 'catrice',
+  'Beauty Creation': 'beauty-creation',
+};
+
+/**
+ * URL de "Añadir al carrito" para un producto:
+ * 1. Si hay ID de WooCommerce → add-to-cart nativo (agrega de verdad al carrito).
+ * 2. Si hay SKU → búsqueda en la tienda (WooCommerce redirige al producto si es
+ *    el único resultado; verificado en tienda.oliwwi.com).
+ * 3. Si hay categoría de marca verificada → página de la marca.
+ * 4. Fallback final → tienda general.
+ */
+export function addToCartUrl(product: Pick<Product, 'wooProductId' | 'sku' | 'brand'>): string {
+  if (product.wooProductId) {
+    return `${siteConfig.storeUrl}/cart/?add-to-cart=${product.wooProductId}`;
+  }
+  if (product.sku) {
+    return `${siteConfig.storeUrl}/?s=${encodeURIComponent(product.sku)}&post_type=product`;
+  }
+  const slug = brandCategorySlugs[product.brand];
+  if (slug) {
+    return `${siteConfig.storeUrl}/product-category/${slug}/`;
+  }
+  return `${siteConfig.storeUrl}/shop/`;
 }
 
 export const products: Product[] = [
@@ -40,7 +75,7 @@ export const products: Product[] = [
     wholesalePrice: '$1.50 c/u',
     extra: 'Caja x24: $30',
     color: 'rose',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=USHAS+Tinta'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=USHAS+Tinta'
   },
   {
     id: 'desmaquillante-rosas-ushas',
@@ -53,7 +88,7 @@ export const products: Product[] = [
     wholesalePrice: '$2.90 c/u',
     extra: 'Caja x12: $26',
     color: 'pink',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=USHAS+Desmaquillante'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=USHAS+Desmaquillante'
   },
   {
     id: 'dr-althea-345',
@@ -65,7 +100,7 @@ export const products: Product[] = [
     discountPct: 12,
     wholesalePrice: '$33.00 c/u',
     color: 'peach',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=Dr+Althea+345'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Dr+Althea+345'
   },
   {
     id: 'dr-althea-147',
@@ -75,7 +110,7 @@ export const products: Product[] = [
     unitPrice: '$36.00',
     wholesalePrice: '$33.00 c/u',
     color: 'lilac',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=Dr+Althea+147'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Dr+Althea+147'
   },
   {
     id: 'boj-protector-solar',
@@ -87,7 +122,7 @@ export const products: Product[] = [
     discountPct: 10,
     wholesalePrice: '$21.50 c/u',
     color: 'peach',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=BOJ+Protector'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=BOJ+Protector'
   },
   {
     id: 'boj-aqua-fresh',
@@ -97,7 +132,7 @@ export const products: Product[] = [
     unitPrice: '$26.00',
     wholesalePrice: '$22.50 c/u',
     color: 'aqua',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=BOJ+Aqua+Fresh'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=BOJ+Aqua+Fresh'
   },
   {
     id: 'manteca-unicornio',
@@ -110,7 +145,7 @@ export const products: Product[] = [
     wholesalePrice: '$9.20 c/u',
     extra: 'Aromas: chicle / espuma de colores',
     color: 'lilac',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=Manteca+Unicornio'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Manteca+Unicornio'
   },
   {
     id: 'kit-cebolla',
@@ -122,7 +157,7 @@ export const products: Product[] = [
     discountPct: 14,
     wholesalePrice: '$25.00 c/u',
     color: 'rose',
-    image: 'https://placehold.co/400x400/fceef1/e92672?text=Kit+Cebolla'
+    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Kit+Cebolla'
   }
 ];
 
@@ -170,10 +205,10 @@ export const branches: Branch[] = [
   {
     id: 'latacunga',
     name: 'Latacunga',
-    address: '[pendiente]',
+    address: 'Escríbenos para conocer la dirección',
     phoneDisplay: '098 440 3580',
     phoneInternational: '593984403580',
-    schedule: '[pendiente]'
+    schedule: 'Horario por confirmar'
   }
 ];
 

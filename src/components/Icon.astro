@@ -1,13 +1,15 @@
 ---
+type IconName = 'sparkles' | 'shield' | 'message-square' | 'tag' | 'store' | 'check' | 'truck' | 'credit' | 'star' | 'heart' | 'zap' | 'gift';
+
 interface Props {
-  name: keyof typeof icons;
+  name: string;
   class?: string;
   strokeWidth?: number;
 }
 
 const { name, class: className = '', strokeWidth = 2 } = Astro.props;
 
-const iconPaths: Record<string, string> = {
+const iconPaths: Record<IconName, string> = {
   sparkles: '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />',
   shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />',
   'message-square': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />',
@@ -22,11 +24,11 @@ const iconPaths: Record<string, string> = {
   gift: '<polyline points="20 12 20 22 4 22 4 12" /><rect x="2" y="7" width="20" height="5" /><line x1="12" x2="12" y1="22" y2="7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />',
 };
 
-const path = iconPaths[name] || iconPaths.sparkles;
+const path = iconPaths[name as IconName] || iconPaths.sparkles;
 ---
 
 <svg
-  class="h-6 w-6 {className}"
+  class:list={['h-6 w-6', className]}
   viewBox="0 0 24 24"
   fill="none"
   stroke="currentColor"

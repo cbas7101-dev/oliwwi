@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe.configure({ retries: 0, workers: 1 });
+test.describe.configure({ retries: 0, mode: 'serial' });
 
 test.describe('Oliwwi Home - Visual Verification', () => {
   test.beforeEach(async ({ page }) => {
@@ -22,19 +22,14 @@ test.describe('Oliwwi Home - Visual Verification', () => {
     await page.screenshot({ path: 'tests/screenshots/hero-slide-4.png', fullPage: false });
   });
 
-  test('Benefits Strip - icons visible', async ({ page }) => {
+  test('Benefits Banner - icons visible', async ({ page }) => {
     await expect(page.locator('[aria-label="Beneficios de Oliwwi"]')).toBeVisible();
     await page.screenshot({ path: 'tests/screenshots/benefits-strip.png', fullPage: false });
   });
 
-  test('Brand Marquee - visible', async ({ page }) => {
-    await expect(page.locator('#brand-marquee')).toBeVisible();
-    await page.screenshot({ path: 'tests/screenshots/brand-marquee.png', fullPage: false });
-  });
-
-  test('Brand Grid - clean logos', async ({ page }) => {
+  test('Brand Strip - clean logos', async ({ page }) => {
     await expect(page.locator('#marcas-heading')).toBeVisible();
-    await page.screenshot({ path: 'tests/screenshots/brand-grid.png', fullPage: false });
+    await page.screenshot({ path: 'tests/screenshots/brand-strip.png', fullPage: false });
   });
 
   test('Full page screenshot', async ({ page }) => {

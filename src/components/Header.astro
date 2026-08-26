@@ -1,91 +1,85 @@
 ---
 import Logo from './Logo.astro';
+import AnnouncementBar from './AnnouncementBar.astro';
 import BranchSelector from './react/BranchSelector';
-import { brands, navLinks, siteConfig } from '../data/config';
+import { brands, navCategories, brandsMenu, siteConfig } from '../data/config';
 
-interface Props {
-  currentPath: string;
-}
-
-const { currentPath } = Astro.props;
+const allNavItems = [...navCategories, brandsMenu];
 ---
 
-<!-- Announcement Bar -->
-<div class="overflow-hidden bg-brand px-6 py-2 text-center font-display text-xs text-white sm:text-sm" aria-label="Información de compra">
-  <div class="flex justify-start gap-8 whitespace-nowrap sm:justify-center">
-    <span>Pide por WhatsApp directo a tu sucursal</span>
-    <span class="hidden md:inline">Retiro en tienda gratis en 6 ciudades</span>
-    <span class="hidden md:inline">Pago seguro online o contraentrega</span>
-  </div>
-</div>
+<AnnouncementBar />
 
-<!-- Main Header -->
-<header class="sticky top-0 z-40 border-b border-ink/[0.06] bg-cream/95 backdrop-blur-xl">
-  <div class="page-shell flex items-center justify-between gap-3 min-h-[80px]">
+<header id="site-header" class="sticky top-0 z-40 border-b border-ink/[0.06] bg-bg/95 backdrop-blur-xl">
+  <div class="page-shell flex items-center gap-3 min-h-[76px] transition-all duration-300 lg:min-h-[84px]" id="header-main-row">
+    <!-- Mobile: hamburger -->
+    <button
+      type="button"
+      id="mobile-menu-toggle"
+      class="grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-full border border-ink/10 bg-surface text-ink transition hover:border-primary/40 hover:text-primary-dark lg:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="h-5 w-5" id="mobile-menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      <svg class="hidden h-5 w-5" id="mobile-menu-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg>
+    </button>
+
     <!-- Logo -->
-    <Logo href={siteConfig.url} />
+    <div id="header-logo" class="shrink-0 transition-all duration-300">
+      <Logo href={siteConfig.url} />
+    </div>
 
-    <!-- Search (desktop) -->
-    <div class="hidden lg:flex-1 max-w-md mx-8">
-      <form action={siteConfig.storeUrl + '/'} method="get" class="relative">
+    <!-- Search -->
+    <div class="ml-auto hidden min-w-0 max-w-xl flex-1 justify-end sm:flex lg:justify-center">
+      <form action={siteConfig.storeUrl + '/'} method="get" class="relative w-full max-w-md" role="search">
         <label for="header-search" class="sr-only">Buscar en la tienda</label>
         <input
           id="header-search"
           name="s"
           type="search"
           placeholder="Buscar productos, marcas..."
-          class="w-full h-10 pl-10 pr-4 bg-white border border-ink/10 rounded-full text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+          class="h-11 w-full rounded-full border border-ink/10 bg-surface pl-11 pr-14 text-sm text-ink placeholder:text-muted transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
         />
-        <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <input type="hidden" name="post_type" value="product" />
+        <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8" />
           <path d="M21 21l-4.35-4.35" />
         </svg>
+        <button
+          type="submit"
+          class="absolute right-1.5 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full bg-primary text-white transition hover:bg-primary-dark"
+          aria-label="Buscar"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </button>
       </form>
     </div>
 
-    <!-- Navigation -->
-    <nav class="hidden lg:flex items-center gap-1" aria-label="Navegación principal">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          data-cross-site={link.href.startsWith(siteConfig.storeUrl) || link.crossSite ? true : undefined}
-          class:list={[
-            'rounded-full px-4 py-2 font-display text-sm font-medium transition hover:bg-white hover:text-brand-dark',
-            link.label === 'Inicio' && currentPath === '/' ? 'text-brand-dark bg-white shadow-soft' : 'text-ink'
-          ]}
-        >
-          {link.label}
-        </a>
-      ))}
-
-      <!-- Marcas Mega Menu -->
-      <details class="group relative">
-        <summary class="list-none rounded-full px-4 py-2 font-display text-sm font-medium text-ink transition hover:bg-white hover:text-brand-dark cursor-pointer flex items-center gap-1">
-          Marcas
-          <svg class="h-4 w-4 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg>
-        </summary>
-        <div class="absolute left-0 top-full mt-2 w-[520px] bg-white rounded-2xl border border-ink/10 shadow-card p-4 opacity-0 invisible group-open:opacity-100 group-open:visible transition-all duration-200 z-50">
-          <div class="grid grid-cols-2 gap-4">
-            {brands.map((brand) => (
-              <a href={`${siteConfig.storeUrl}/product-category/${brand.slug}/`} data-cross-site class="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-pale transition">
-                <img src={brand.logo} alt={brand.name} class="h-8 w-auto object-contain" />
-                <span class="font-display text-sm font-medium text-ink">{brand.name}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </details>
-    </nav>
-
-    <!-- Right side: Branch Selector + Cart -->
-    <div class="flex items-center gap-2">
+    <!-- Right icons -->
+    <div class="flex shrink-0 items-center gap-2">
       <BranchSelector client:load />
 
-      <!-- Cart icon linking to WP store cart -->
+      <!-- Account (desktop) -->
       <a
-        href={siteConfig.storeUrl + '/cart/'}
+        href={siteConfig.accountUrl}
         data-cross-site
-        class="hidden lg:flex items-center justify-center w-11 h-11 rounded-full border border-ink/10 bg-white text-ink hover:bg-brand-pale hover:text-brand-dark hover:border-brand/30 transition"
+        class="hidden h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-surface text-ink transition hover:border-primary/40 hover:bg-primary-pale hover:text-primary-dark sm:flex"
+        aria-label="Mi cuenta"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </a>
+
+      <!-- Cart -->
+      <a
+        href={siteConfig.cartUrl}
+        data-cross-site
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-surface text-ink transition hover:border-primary/40 hover:bg-primary-pale hover:text-primary-dark"
         aria-label="Carrito de compras"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -94,28 +88,205 @@ const { currentPath } = Astro.props;
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
       </a>
+    </div>
+  </div>
 
-      <!-- Mobile menu -->
-      <details class="group relative lg:hidden">
-        <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full border border-ink/10 bg-white text-ink [&::-webkit-details-marker]:hidden" aria-label="Abrir menú">
-          <svg class="h-5 w-5 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-          <svg class="hidden h-5 w-5 group-open:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg>
-        </summary>
-        <nav class="absolute right-0 top-14 w-56 overflow-hidden rounded-2xl border border-ink/10 bg-white p-2 shadow-card" aria-label="Navegación móvil">
-          {navLinks.map((link) => (
+  <!-- Nav desktop -->
+  <nav class="hidden border-t border-ink/[0.06] lg:block" aria-label="Navegación principal">
+    <div class="page-shell">
+      <ul class="m-0 flex list-none items-center justify-center gap-1 py-1.5">
+        {allNavItems.map((item) => (
+          <li class="group relative">
             <a
-              href={link.href}
-              data-cross-site={link.href.startsWith(siteConfig.storeUrl) || link.crossSite ? true : undefined}
-              class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-brand-pale hover:text-brand-dark"
+              href={item.href}
+              data-cross-site={item.href.startsWith('http') ? true : undefined}
+              class="flex items-center gap-1 rounded-full px-4 py-2 font-display text-sm font-medium text-ink transition hover:bg-surface hover:text-primary-dark"
             >
-              {link.label}
+              {item.label}
+              {item.mega && (
+                <svg class="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6" /></svg>
+              )}
             </a>
+
+            {item.mega && (
+              <div
+                class="invisible absolute left-1/2 top-full z-50 w-[min(88vw,780px)] -translate-x-1/2 translate-y-1 rounded-3xl border border-ink/10 bg-surface p-6 opacity-0 shadow-card transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+                role="region"
+                aria-label={`Menú ${item.label}`}
+              >
+                <div class:list={['grid gap-8', item.mega.promos && item.mega.promos.length > 0 ? 'sm:grid-cols-[1fr_1fr_220px]' : 'sm:grid-cols-2']}>
+                  {item.mega.columns.map((column) => (
+                    <div>
+                      <p class="m-0 mb-3 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">{column.heading}</p>
+                      <ul class="m-0 grid list-none gap-1 p-0">
+                        {column.links.map((link) => (
+                          <li>
+                            <a
+                              href={link.href}
+                              data-cross-site={link.href.startsWith('http') ? true : undefined}
+                              class="flex items-center gap-2.5 rounded-xl px-3 py-2 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark"
+                            >
+                              {link.logo && (
+                                <img src={link.logo} alt="" class="h-6 w-auto max-w-[54px] object-contain" loading="lazy" />
+                              )}
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+
+                  {item.mega.promos && item.mega.promos.length > 0 && (
+                    <div class="grid gap-3">
+                      {item.mega.promos.map((promo) => (
+                        <a
+                          href={promo.href}
+                          data-cross-site={promo.href.startsWith('http') ? true : undefined}
+                          class="group/promo relative overflow-hidden rounded-2xl"
+                        >
+                          <img src={promo.image} alt={promo.alt} class="h-28 w-full object-cover transition duration-500 group-hover/promo:scale-105" loading="lazy" />
+                          <span class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
+                          <span class="absolute bottom-2.5 left-3 right-3 font-display text-sm font-semibold text-white">{promo.title}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden max-h-[calc(100dvh-120px)] overflow-y-auto border-t border-ink/10 bg-surface lg:hidden" role="dialog" aria-label="Menú móvil">
+    <div class="page-shell grid gap-6 py-6">
+      <form action={siteConfig.storeUrl + '/'} method="get" class="relative" role="search">
+        <label for="mobile-search" class="sr-only">Buscar en la tienda</label>
+        <input
+          id="mobile-search"
+          name="s"
+          type="search"
+          placeholder="Buscar productos, marcas..."
+          class="h-11 w-full rounded-full border border-ink/10 bg-bg pl-11 pr-4 text-sm text-ink placeholder:text-muted focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        <input type="hidden" name="post_type" value="product" />
+        <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <path d="M21 21l-4.35-4.35" />
+        </svg>
+      </form>
+
+      <nav aria-label="Categorías">
+        <p class="mb-3 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Categorías</p>
+        <div class="grid gap-1">
+          {allNavItems.map((item) => (
+            item.mega ? (
+              <details class="group/acc rounded-2xl">
+                <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark [&::-webkit-details-marker]:hidden">
+                  {item.label}
+                  <svg class="h-4 w-4 transition-transform group-open/acc:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="grid gap-1 pb-2 pl-3">
+                  <a href={item.href} data-cross-site={item.href.startsWith('http') ? true : undefined} class="rounded-xl px-4 py-2.5 font-display text-sm font-semibold text-primary-dark transition hover:bg-primary-pale">Ver todo de {item.label}</a>
+                  {item.mega.columns.map((column) => (
+                    column.links.map((link) => (
+                      <a href={link.href} data-cross-site={link.href.startsWith('http') ? true : undefined} class="rounded-xl px-4 py-2.5 text-sm text-ink transition hover:bg-primary-pale hover:text-primary-dark">{link.label}</a>
+                    ))
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a
+                href={item.href}
+                data-cross-site={item.href.startsWith('http') ? true : undefined}
+                class="flex min-h-12 items-center rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark"
+              >
+                {item.label}
+              </a>
+            )
           ))}
-          <div class="pt-2 border-t border-ink/10">
-            <a href={`${siteConfig.storeUrl}/shop/`} data-cross-site class="block rounded-xl px-4 py-3 font-display text-sm font-medium text-brand-dark">Todas las marcas</a>
-          </div>
-        </nav>
-      </details>
+        </div>
+      </nav>
+
+      <nav aria-label="Enlaces de la tienda">
+        <p class="mb-3 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Tienda</p>
+        <div class="grid gap-1">
+          <a href={siteConfig.accountUrl} data-cross-site class="flex min-h-12 items-center rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark">Mi cuenta</a>
+          <a href={siteConfig.cartUrl} data-cross-site class="flex min-h-12 items-center rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark">Carrito</a>
+          <a href={`${siteConfig.storeUrl}/nuestras-tiendas/`} data-cross-site class="flex min-h-12 items-center rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark">Sucursales</a>
+          <a href={`${siteConfig.storeUrl}/nosotros/`} data-cross-site class="flex min-h-12 items-center rounded-2xl px-4 py-3 font-display text-sm font-medium text-ink transition hover:bg-primary-pale hover:text-primary-dark">Nosotros</a>
+        </div>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-2 border-t border-ink/10 pt-4">
+        {brands.map((brand) => (
+          <a
+            href={brand.categoryUrl}
+            data-cross-site
+            class="rounded-full border border-ink/10 px-3 py-1.5 text-xs font-medium text-ink transition hover:border-primary/40 hover:text-primary-dark"
+          >
+            {brand.name}
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const mainRow = document.getElementById('header-main-row');
+  const logo = document.getElementById('header-logo');
+
+  function onScroll() {
+    const scrolled = window.scrollY > 32;
+    header?.classList.toggle('header-scrolled', scrolled);
+    mainRow?.classList.toggle('min-h-[60px]', scrolled);
+    mainRow?.classList.toggle('min-h-[76px]', !scrolled);
+    mainRow?.classList.toggle('lg:min-h-[64px]', scrolled);
+    mainRow?.classList.toggle('lg:min-h-[84px]', !scrolled);
+    logo?.querySelector('img')?.classList.toggle('!h-9', scrolled);
+    logo?.querySelector('img')?.classList.toggle('!w-[135px]', scrolled);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('mobile-menu-icon-open');
+  const iconClose = document.getElementById('mobile-menu-icon-close');
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Abrir menú');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu?.classList.remove('hidden');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      toggle?.setAttribute('aria-expanded', 'true');
+      toggle?.setAttribute('aria-label', 'Cerrar menú');
+    }
+  });
+
+  menu?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+</script>

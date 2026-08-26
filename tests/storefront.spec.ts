@@ -5,7 +5,7 @@ async function waitForIslands(page: import('@playwright/test').Page) {
 }
 
 test('selects a branch and builds the correct WhatsApp order URL', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/catalogo');
   await waitForIslands(page);
   await page.getByRole('button', { name: /elige tu sucursal/i }).click();
   await page.getByRole('dialog').getByRole('button', { name: /Ambato/ }).click();
