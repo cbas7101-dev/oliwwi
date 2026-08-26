@@ -2,6 +2,10 @@
 import { heroSlides } from '../data/config';
 ---
 
+{heroSlides.map((slide) => (
+  <link rel="preload" as="image" href={slide.image} />
+))}
+
 <div class="relative w-full overflow-hidden" id="hero-carousel">
   <div class="grid" id="hero-track" style="grid-template-columns: repeat(4, 100%);">
     {heroSlides.map((slide, i) => (
@@ -11,6 +15,8 @@ import { heroSlides } from '../data/config';
           alt={slide.alt}
           class="w-full h-[520px] sm:h-[600px] object-cover"
           loading="eager"
+          decoding="async"
+          fetchpriority={i === 0 ? 'high' : 'auto'}
         />
         <div class="absolute inset-0 bg-gradient-to-r from-primary/55 via-primary/25 to-transparent" />
         <div class="absolute inset-0 flex items-center page-shell">
@@ -94,17 +100,29 @@ import { heroSlides } from '../data/config';
     let currentIndex = 0;
     const slideCount = slides.length;
     let autoplayInterval: number;
+    let isTransitioning = false;
 
     function goToSlide(index: number, instant = false) {
+      if (isTransitioning && !instant) return;
       currentIndex = (index + slideCount) % slideCount;
       const translateX = -currentIndex * (100 / slideCount);
 
-      heroTrack.style.transition = instant ? 'none' : 'transform 700ms ease-out';
-      heroTrack.style.transform = `translateX(${translateX}%)`;
-
       if (instant) {
+        heroTrack.style.transition = 'none';
+        heroTrack.style.transform = `translateX(${translateX}%)`;
         void heroTrack.offsetHeight;
         heroTrack.style.transition = 'transform 700ms ease-out';
+      } else {
+        isTransitioning = true;
+        const onEnd = () => {
+          isTransitioning = false;
+          heroTrack.removeEventListener('transitionend', onEnd);
+          window.clearTimeout(fallback);
+        };
+        const fallback = window.setTimeout(onEnd, 750);
+        heroTrack.addEventListener('transitionend', onEnd);
+        heroTrack.style.transition = 'transform 700ms ease-out';
+        heroTrack.style.transform = `translateX(${translateX}%)`;
       }
 
       updateDots();
@@ -171,6 +189,8 @@ import { heroSlides } from '../data/config';
     display: grid;
     grid-template-columns: repeat(4, 100%);
     transition: transform 700ms ease-out;
+    will-change: transform;
+    backface-visibility: hidden;
   }
   #hero-track > div {
     min-width: 0;
