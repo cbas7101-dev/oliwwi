@@ -75,7 +75,7 @@ export const products: Product[] = [
     wholesalePrice: '$1.50 c/u',
     extra: 'Caja x24: $30',
     color: 'rose',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=USHAS+Tinta'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=USHAS+Tinta'
   },
   {
     id: 'desmaquillante-rosas-ushas',
@@ -88,7 +88,7 @@ export const products: Product[] = [
     wholesalePrice: '$2.90 c/u',
     extra: 'Caja x12: $26',
     color: 'pink',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=USHAS+Desmaquillante'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=USHAS+Desmaquillante'
   },
   {
     id: 'dr-althea-345',
@@ -100,7 +100,7 @@ export const products: Product[] = [
     discountPct: 12,
     wholesalePrice: '$33.00 c/u',
     color: 'peach',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Dr+Althea+345'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=Dr+Althea+345'
   },
   {
     id: 'dr-althea-147',
@@ -110,7 +110,7 @@ export const products: Product[] = [
     unitPrice: '$36.00',
     wholesalePrice: '$33.00 c/u',
     color: 'lilac',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Dr+Althea+147'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=Dr+Althea+147'
   },
   {
     id: 'boj-protector-solar',
@@ -122,7 +122,7 @@ export const products: Product[] = [
     discountPct: 10,
     wholesalePrice: '$21.50 c/u',
     color: 'peach',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=BOJ+Protector'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=BOJ+Protector'
   },
   {
     id: 'boj-aqua-fresh',
@@ -132,7 +132,7 @@ export const products: Product[] = [
     unitPrice: '$26.00',
     wholesalePrice: '$22.50 c/u',
     color: 'aqua',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=BOJ+Aqua+Fresh'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=BOJ+Aqua+Fresh'
   },
   {
     id: 'manteca-unicornio',
@@ -145,7 +145,7 @@ export const products: Product[] = [
     wholesalePrice: '$9.20 c/u',
     extra: 'Aromas: chicle / espuma de colores',
     color: 'lilac',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Manteca+Unicornio'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=Manteca+Unicornio'
   },
   {
     id: 'kit-cebolla',
@@ -157,7 +157,7 @@ export const products: Product[] = [
     discountPct: 14,
     wholesalePrice: '$25.00 c/u',
     color: 'rose',
-    image: 'https://placehold.co/400x400/efe3fb/611ac0?text=Kit+Cebolla'
+    image: 'https://placehold.co/400x400/efe3fb/6415c8?text=Kit+Cebolla'
   }
 ];
 

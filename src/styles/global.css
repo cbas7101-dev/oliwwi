@@ -13,24 +13,24 @@
     /* Sistema de diseño Oliwwi — única fuente de verdad de la paleta.
        Los componentes SIEMPRE usan las clases Tailwind (primary, accent, bg,
        surface, ink, muted) que apuntan a estas variables. */
-    --color-primary: #611ac0;
-    --color-primary-rgb: 97 26 192;
-    --color-primary-dark: #4a1494;
-    --color-primary-dark-rgb: 74 20 148;
-    --color-primary-soft: #c9a6f5;
-    --color-primary-soft-rgb: 201 166 245;
+    --color-primary: #6415c8;
+    --color-primary-rgb: 100 21 200;
+    --color-primary-dark: #4a0e96;
+    --color-primary-dark-rgb: 74 14 150;
+    --color-primary-soft: #c7a3f6;
+    --color-primary-soft-rgb: 199 163 246;
     --color-primary-pale: #efe3fb;
     --color-primary-pale-rgb: 239 227 251;
-    --color-accent: #ec1e8c;
-    --color-accent-rgb: 236 30 140;
-    --color-accent-pale: #fde4f2;
-    --color-accent-pale-rgb: 253 228 242;
-    --color-bg: #f2e7e2;
-    --color-bg-rgb: 242 231 226;
+    --color-accent: #ff5db8;
+    --color-accent-rgb: 255 93 184;
+    --color-accent-pale: #ffe3f2;
+    --color-accent-pale-rgb: 255 227 242;
+    --color-bg: #f3e7e1;
+    --color-bg-rgb: 243 231 225;
     --color-surface: #ffffff;
     --color-surface-rgb: 255 255 255;
-    --color-text: #1a1a1a;
-    --color-text-rgb: 26 26 26;
+    --color-text: #111111;
+    --color-text-rgb: 17 17 17;
     --color-text-muted: #6b6b6b;
     --color-text-muted-rgb: 107 107 107;
   }

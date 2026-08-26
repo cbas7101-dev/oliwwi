@@ -105,7 +105,7 @@ import { heroSlides } from '../data/config';
     function goToSlide(index: number, instant = false) {
       if (isTransitioning && !instant) return;
       currentIndex = (index + slideCount) % slideCount;
-      const translateX = -currentIndex * (100 / slideCount);
+      const translateX = -currentIndex * 100;
 
       if (instant) {
         heroTrack.style.transition = 'none';

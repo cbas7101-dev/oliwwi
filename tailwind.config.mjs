@@ -32,8 +32,8 @@ export default {
         body: ['Nunito Sans Variable', 'Arial', 'sans-serif']
       },
       boxShadow: {
-        soft: '0 10px 30px -14px rgba(74, 20, 148, 0.28)',
-        card: '0 22px 60px -30px rgba(74, 20, 148, 0.38)'
+        soft: '0 10px 30px -14px rgba(74, 14, 150, 0.28)',
+        card: '0 22px 60px -30px rgba(74, 14, 150, 0.38)'
       }
     }
   },
