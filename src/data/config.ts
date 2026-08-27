@@ -302,7 +302,7 @@ export const heroSlides = [
   },
   {
     id: 4,
-    image: '/img/banner-hero-purple.jpg',
+    image: '/img/hero-4.jpg',
     alt: 'Pedidos por WhatsApp',
     headline: 'Pide por WhatsApp, recoge en tienda',
     subhead: 'Elige tu sucursal y tu pedido llega directo al chat',

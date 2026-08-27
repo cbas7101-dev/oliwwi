@@ -4,6 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        oliwwi: {
+          50: '#FEF0F8',
+          100: '#FDDDF0',
+          200: '#FCBBE0',
+          300: '#FA8FCC',
+          400: '#F759B4',
+          500: '#F641A9',
+          600: '#F5299E',
+          700: '#DB0A82',
+          800: '#AB0865',
+          900: '#7F064B',
+          950: '#4E042E'
+        },
         primary: {
           DEFAULT: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
           dark: 'rgb(var(--color-primary-dark-rgb) / <alpha-value>)',
@@ -32,8 +45,8 @@ export default {
         body: ['Nunito Sans Variable', 'Arial', 'sans-serif']
       },
       boxShadow: {
-        soft: '0 10px 30px -14px rgba(74, 14, 150, 0.28)',
-        card: '0 22px 60px -30px rgba(74, 14, 150, 0.38)'
+        soft: '0 10px 30px -14px rgba(127,6,75, 0.28)',
+        card: '0 22px 60px -30px rgba(78,4,46, 0.32)'
       }
     }
   },
