@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '../data/config';
+import { campaignImages, siteConfig } from '../data/config';
 
 const socialCards = [
   {
@@ -7,8 +7,8 @@ const socialCards = [
     handle: '@oliwwi_ec',
     tagline: 'Fotos, reels y novedades',
     href: 'https://www.instagram.com/oliwwi_ec/',
-    image: '/img/social/social-tienda.jpg',
-    alt: 'Estante de tienda Oliwwi con productos de cuidado personal',
+    image: campaignImages.ritualShelf,
+    alt: 'Rutina de cuidado personal en repisa rosada',
     badgeClass: 'text-primary-dark',
   },
   {
@@ -16,8 +16,8 @@ const socialCards = [
     handle: '@oliwwi_makeup',
     tagline: 'Videos y tendencias',
     href: 'https://www.tiktok.com/@oliwwi_makeup',
-    image: '/img/social/social-labios.jpg',
-    alt: 'Labios con gloss morado brillante',
+    image: campaignImages.heroGloss,
+    alt: 'Modelo aplicándose gloss rosado',
     badgeClass: 'text-black',
   },
   {
@@ -25,47 +25,47 @@ const socialCards = [
     handle: '@oliwwi_makeup',
     tagline: 'Canal y comunidad',
     href: 'https://t.me/oliwwi_makeup',
-    image: '/img/social/social-ojos.jpg',
-    alt: 'Maquillaje de ojos en tonos morados y rosas',
+    image: campaignImages.skincareFlatlay,
+    alt: 'Productos de skincare en tonos rosados',
     badgeClass: 'text-[#0088cc]',
   },
 ];
 
 const feedPosts = [
   {
-    image: '/img/social/social-rostro.jpg',
-    alt: 'Rostro con piel luminosa después del skincare',
+    image: campaignImages.storeShelf,
+    alt: 'Repisa de tienda con productos rosados',
     position: '',
     label: '',
     href: 'https://www.instagram.com/oliwwi_ec/',
     crossSite: false,
   },
   {
-    image: '/img/social/social-skincare.jpg',
-    alt: 'Máscaras faciales, sérums y lavanda sobre mármol',
+    image: campaignImages.skincareFlatlay,
+    alt: 'Mascarillas, sérums y cremas rosadas sobre mármol',
     position: '',
     label: '',
     href: 'https://www.instagram.com/oliwwi_ec/',
     crossSite: false,
   },
   {
-    image: '/img/social/social-labios.jpg',
-    alt: 'Gloss morado sobre labios',
+    image: campaignImages.heroGloss,
+    alt: 'Gloss rosado aplicado frente al espejo',
     position: 'object-top',
     label: '',
     href: 'https://www.instagram.com/oliwwi_ec/',
     crossSite: false,
   },
   {
-    image: '/img/social/social-ojos.jpg',
-    alt: 'Sombra de ojos morada y rosada',
+    image: campaignImages.ritualShelf,
+    alt: 'Selección de productos de cuidado en tonos rosados',
     position: 'object-[50%_25%]',
     label: '',
     href: 'https://www.instagram.com/oliwwi_ec/',
     crossSite: false,
   },
   {
-    image: '/img/social/social-promo.jpg',
+    image: campaignImages.promoGraphic,
     alt: '',
     position: '',
     label: 'Nuevos ingresos',
@@ -73,7 +73,7 @@ const feedPosts = [
     crossSite: true,
   },
   {
-    image: '/img/banner-textura.jpg',
+    image: campaignImages.abstractWarm,
     alt: '',
     position: '',
     label: 'Ofertas de la semana',

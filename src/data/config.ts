@@ -8,6 +8,17 @@ export const siteConfig = {
   whatsappBase: 'https://wa.me/593',
 };
 
+export const campaignImages = {
+  heroGloss: '/img/campaign/hero-gloss-pink.png',
+  skincareFlatlay: '/img/campaign/skincare-flatlay-pink.png',
+  promoGraphic: '/img/campaign/promo-graphic-pink-orange.png',
+  ritualShelf: '/img/campaign/ritual-shelf-pink.png',
+  storeShelf: '/img/campaign/store-shelf-pink.png',
+  benefitsIcons: '/img/campaign/benefits-icons-pink.png',
+  abstractSoft: '/img/campaign/abstract-pink-soft.png',
+  abstractWarm: '/img/campaign/abstract-pink-warm.png',
+} as const;
+
 export const announcementMessages = [
   '✨ Envíos a todo Ecuador — 100% original',
   'Retiro en tienda gratis en 6 ciudades',
@@ -159,14 +170,14 @@ export const navCategories: NavCategory[] = [
       ],
       promos: [
         {
-          image: '/img/promo-maquillaje.jpg',
-          alt: 'Promoción de maquillaje',
+          image: campaignImages.heroGloss,
+          alt: 'Modelo aplicándose gloss en tonos rosados',
           title: 'Nueva temporada de color',
           href: shopUrl,
         },
         {
-          image: '/img/promo-labios.jpg',
-          alt: 'Promoción de labiales',
+          image: campaignImages.promoGraphic,
+          alt: 'Fondo gráfico rosado y naranja para promociones',
           title: 'Labios que enamoran',
           href: shopUrl,
         },
@@ -196,8 +207,8 @@ export const navCategories: NavCategory[] = [
       ],
       promos: [
         {
-          image: '/img/promo-skincare.jpg',
-          alt: 'Promoción de skincare',
+          image: campaignImages.skincareFlatlay,
+          alt: 'Rutina de skincare en envases rosados sobre mármol',
           title: 'Tu piel va primero',
           href: shopUrl,
         },
@@ -225,8 +236,8 @@ export const navCategories: NavCategory[] = [
       ],
       promos: [
         {
-          image: '/img/promo-skincare.jpg',
-          alt: 'Promoción de cuidado personal',
+          image: campaignImages.ritualShelf,
+          alt: 'Productos de cuidado personal en repisa rosada',
           title: 'Tu ritual de cuidado',
           href: shopUrl,
         },
@@ -269,8 +280,8 @@ export const benefits = [
 export const heroSlides = [
   {
     id: 1,
-    image: '/img/banner-promo-wide.jpg',
-    alt: 'Maquillaje Oliwwi',
+    image: campaignImages.heroGloss,
+    alt: 'Modelo aplicándose gloss en un set rosado',
     headline: 'Todo lo que amas, más cerca de ti',
     subhead: 'Maquillaje, skincare coreano y cuidado personal 100% original',
     ctaText: 'Comprar online',
@@ -280,8 +291,8 @@ export const heroSlides = [
   },
   {
     id: 2,
-    image: '/img/hero-2.jpg',
-    alt: 'Skincare coreano',
+    image: campaignImages.skincareFlatlay,
+    alt: 'Skincare coreano en tonos rosados sobre mármol',
     headline: 'Tu skincare, sin vueltas',
     subhead: 'K-beauty, sérums y rutinas para cada tipo de piel',
     ctaText: 'Explorar skincare',
@@ -291,8 +302,8 @@ export const heroSlides = [
   },
   {
     id: 3,
-    image: '/img/banner-secundario.jpg',
-    alt: 'Ofertas Oliwwi',
+    image: campaignImages.promoGraphic,
+    alt: 'Fondo rosado y naranja para promociones Oliwwi',
     headline: 'Tus favoritos, mejor precio',
     subhead: 'Descuentos exclusivos en marcas que amas',
     ctaText: 'Ver ofertas',
@@ -302,8 +313,8 @@ export const heroSlides = [
   },
   {
     id: 4,
-    image: '/img/hero-4.jpg',
-    alt: 'Pedidos por WhatsApp',
+    image: campaignImages.storeShelf,
+    alt: 'Repisa de tienda con productos rosados de cuidado personal',
     headline: 'Pide por WhatsApp, recoge en tienda',
     subhead: 'Elige tu sucursal y tu pedido llega directo al chat',
     ctaText: 'Elegir sucursal',

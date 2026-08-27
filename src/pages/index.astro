@@ -12,7 +12,7 @@ import ChatWidget from '../components/ChatWidget.astro';
 import { products } from '../data/store';
 import { novedades } from '../data/novedades';
 import { favoritos } from '../data/favoritos';
-import { siteConfig } from '../data/config';
+import { campaignImages, siteConfig } from '../data/config';
 
 const skincareProducts = products.filter((product) =>
   product.category === 'Skincare' || product.category === 'Skincare coreano'
@@ -44,8 +44,8 @@ const bestSellerTabs = [
   />
 
   <BannerCTA
-    image="/img/banner-promo-wide.jpg"
-    alt="Mujer aplicándose brillo labial frente a un espejo"
+    image={campaignImages.heroGloss}
+    alt="Mujer aplicándose brillo labial en un set rosado"
     headline="Tu look, a tu manera"
     subhead="Color, texturas y marcas originales para convertir tu rutina en tu momento favorito."
     ctaText="Explorar maquillaje"
@@ -71,8 +71,8 @@ const bestSellerTabs = [
   />
 
   <BannerCTA
-    image="/img/banner-1.jpg"
-    alt="Colección de sérums y cremas para el cuidado de la piel"
+    image={campaignImages.skincareFlatlay}
+    alt="Colección de sérums, cremas y mascarillas en tonos rosados"
     headline="Tu piel cambia. Tu rutina también."
     subhead="Encuentra hidratación, protección y K-beauty para lo que tu piel necesita hoy."
     ctaText="Explorar skincare"
